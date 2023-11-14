@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   TabListStyled,
   TabPanelStyled,
@@ -7,6 +6,7 @@ import {
   AppWrapper,
   TabWrapper,
 } from "./App.styled";
+import Expenses from "../Expenses/Expenses";
 
 function App() {
   return (
@@ -18,7 +18,9 @@ function App() {
           <TabStyled>Income </TabStyled>
         </TabListStyled>
         <TabWrapper>
-          <TabPanelStyled>dasnndsmand</TabPanelStyled>
+          <TabPanelStyled>
+            <Expenses />
+          </TabPanelStyled>
           <TabPanelStyled>dasnndsmandsadasd</TabPanelStyled>
         </TabWrapper>
       </TabsStyled>
