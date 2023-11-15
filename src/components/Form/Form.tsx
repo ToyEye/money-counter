@@ -1,4 +1,4 @@
-import React from "react";
+import { useId } from "react";
 import { useFormik } from "formik";
 import { IValues } from "../../types/types";
 
@@ -6,13 +6,14 @@ type Props = {
   onSubmit: (args: IValues) => void;
 };
 
-const initialValues: IValues = {
-  price: "",
-  description: "",
-  date: "",
-};
-
 const Form = ({ onSubmit }: Props) => {
+  const initialValues: IValues = {
+    price: "",
+    description: "",
+    date: "",
+    id: useId(),
+  };
+
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {

@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import Form from "../Form/Form";
 
-import { IValues } from "../../types/types";
+import { IValues, TValuesList } from "../../types/types";
+import FinanceTable from "../FinanceTable/FinanceTable";
 
 const Expenses = () => {
-  const [expenses, setExpenses] = useState<IValues[]>([]);
+  const [expenses, setExpenses] = useState<TValuesList>([]);
 
   const addExpense = (expense: IValues) => {
     setExpenses((prevExpenses) => [...prevExpenses, expense]);
   };
-  console.log(expenses);
+
   return (
     <div>
       Expense
       <Form onSubmit={addExpense} />
+      <FinanceTable account={expenses} />
     </div>
   );
 };
