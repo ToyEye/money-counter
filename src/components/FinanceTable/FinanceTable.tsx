@@ -1,15 +1,22 @@
-import { TValuesList, IValues } from "../../types/types";
+import FinanceRow from "../FinanceRow/FinanceRow";
 
 import {
   Table,
-  TableData,
   TableHead,
   TableHeader,
   TableRow,
   TableBody,
 } from "./FinanceTable.style";
 
-const FinanceTable = ({ account }: TValuesList) => {
+import { TValuesList, IValues } from "../../types/types";
+
+type Props = {
+  account: TValuesList;
+  deleteNote: (arg: string) => void;
+  changeNote: (arg: string, arg2: string) => void;
+};
+
+const FinanceTable = ({ account, deleteNote, changeNote }: Props) => {
   return (
     <Table>
       <TableHead>
@@ -20,31 +27,14 @@ const FinanceTable = ({ account }: TValuesList) => {
         </TableRow>
       </TableHead>
       <TableBody>
-        <TableRow>
-          <TableData>1520</TableData>
-          <TableData>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum et
-            minus.
-          </TableData>
-          <TableData>20/20/2015</TableData>
-        </TableRow>
-        <TableRow>
-          <TableData>1520</TableData>
-          <TableData>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum et
-            minus nesciunt nobis placeat eligendi earum totam in non temporibus
-            mollitia voluptatem qui ex, vel, eveniet veritatis beatae asperiores
-            consequatur!
-          </TableData>
-          <TableData>20/20/2015</TableData>
-        </TableRow>
         {account.map((operation: IValues) => {
           return (
-            <TableRow key={operation.id}>
-              <TableData>{operation.price}</TableData>
-              <TableData>{operation.description}</TableData>
-              <TableData>{operation.date}</TableData>
-            </TableRow>
+            <FinanceRow
+              key={operation.id}
+              operation={operation}
+              deleteNote={deleteNote}
+              changeNote={changeNote}
+            />
           );
         })}
       </TableBody>
