@@ -13,7 +13,7 @@ import { TValuesList, IValues } from "../../types/types";
 type Props = {
   account: TValuesList;
   deleteNote: (arg: string) => void;
-  changeNote: (arg: string, arg2: string) => void;
+  changeNote: (arg: IValues) => void;
 };
 
 const FinanceTable = ({ account, deleteNote, changeNote }: Props) => {

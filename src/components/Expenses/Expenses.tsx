@@ -16,10 +16,14 @@ const Expenses = () => {
     setExpenses((prev) => prev.filter((expense) => expense.id !== id));
   };
 
-  const changeNote = (id: string, text: string) => {
+  const changeNote = (data: IValues) => {
+    const { id, description, price, date } = data;
+
     setExpenses((prev) => {
       return prev.map((expense) => {
-        return expense.id === id ? { ...expense, description: text } : expense;
+        return expense.id === id
+          ? { ...expense, price, description, date }
+          : expense;
       });
     });
   };
