@@ -2,14 +2,14 @@ import Form from "../Form/Form";
 
 import FinanceTable from "../FinanceTable/FinanceTable";
 
-const Expenses = () => {
+const MoneyCounter = ({ type = "expenses" }) => {
   return (
     <div>
       Expense
-      <Form />
-      <FinanceTable />
+      <Form type={type} />
+      <FinanceTable type={type} />
     </div>
   );
 };
 
-export default Expenses;
+export default MoneyCounter;

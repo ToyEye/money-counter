@@ -1,6 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IValues, IMoney } from "../../types/types";
+import { IValues, IMoney, TRedux } from "../../types/types";
+
+type TDelProp = {
+  type: string;
+  id: string;
+};
+
+type TChangeProp = {
+  type: string;
+  newChanges: IValues;
+};
 
 const initialState: IMoney = {
   expenses: [],
@@ -11,21 +21,24 @@ const moneySlice = createSlice({
   name: "money",
   initialState,
   reducers: {
-    addExpense: (state, action: PayloadAction<IValues>) => {
-      state.expenses.push(action.payload);
+    addNote: (state, action: PayloadAction<TRedux>) => {
+      const { type, newNote } = action.payload;
+      console.log(type); //expenses
+      state[type].push(newNote);
     },
-    deleteExpense: (state, action: PayloadAction<string>) => {
-      state.expenses = state.expenses.filter(
-        (expense) => expense.id !== action.payload
-      );
+    deleteExpense: (state, action: PayloadAction<TDelProp>) => {
+      const { type, id } = action.payload;
+      state[type] = state[type].filter((money) => money.id !== id);
     },
-    changeExpense: (state, action: PayloadAction<IValues>) => {
-      const { id, description, price, date } = action.payload;
 
-      state.expenses = state.expenses.map((expense) => {
-        return expense.id === id
-          ? { ...expense, price, description, date }
-          : expense;
+    changeExpense: (state, action: PayloadAction<TChangeProp>) => {
+      const {
+        type,
+        newChanges: { price, description, date, id },
+      } = action.payload;
+
+      state[type] = state[type].map((money) => {
+        return money.id === id ? { ...money, price, description, date } : money;
       });
     },
   },
@@ -33,4 +46,4 @@ const moneySlice = createSlice({
 
 export default moneySlice.reducer;
 
-export const { addExpense, deleteExpense, changeExpense } = moneySlice.actions;
+export const { addNote, deleteExpense, changeExpense } = moneySlice.actions;

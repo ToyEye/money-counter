@@ -5,9 +5,18 @@ export interface IValues {
   id: string;
 }
 
-export type TValuesList = IValues[];
-
 export interface IMoney {
   expenses: TValuesList;
   income: TValuesList;
 }
+
+export type TValuesList = IValues[];
+
+export type TType = {
+  type: string;
+};
+
+export type TRedux = {
+  type: string;
+  newNote: IValues;
+};

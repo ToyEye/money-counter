@@ -10,10 +10,10 @@ import {
   TableBody,
 } from "./FinanceTable.style";
 
-import { IValues } from "../../types/types";
+import { IValues, TType } from "../../types/types";
 
-const FinanceTable = () => {
-  const account = useSelector(getExpenses);
+const FinanceTable = ({ type }: TType) => {
+  const account = useSelector((state) => state[type]);
 
   return (
     <Table>
@@ -26,7 +26,9 @@ const FinanceTable = () => {
       </TableHead>
       <TableBody>
         {account.map((operation: IValues) => {
-          return <FinanceRow key={operation.id} operation={operation} />;
+          return (
+            <FinanceRow key={operation.id} operation={operation} type={type} />
+          );
         })}
       </TableBody>
     </Table>

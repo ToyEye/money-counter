@@ -6,7 +6,7 @@ import {
   AppWrapper,
   TabWrapper,
 } from "./App.styled";
-import Expenses from "../Expenses/Expenses";
+import MoneyCounter from "../MoneyCounter/MoneyCounter";
 
 function App() {
   return (
@@ -19,9 +19,11 @@ function App() {
         </TabListStyled>
         <TabWrapper>
           <TabPanelStyled>
-            <Expenses />
+            <MoneyCounter type="expenses" />
           </TabPanelStyled>
-          <TabPanelStyled>dasnndsmandsadasd</TabPanelStyled>
+          <TabPanelStyled>
+            <MoneyCounter type="income" />
+          </TabPanelStyled>
         </TabWrapper>
       </TabsStyled>
       <div></div>

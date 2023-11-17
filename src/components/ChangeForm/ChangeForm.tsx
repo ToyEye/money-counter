@@ -9,11 +9,11 @@ import { IValues } from "../../types/types";
 
 type Props = {
   operation: IValues;
-
+  type: string;
   toggleModal: () => void;
 };
 
-const ChangeForm = ({ operation, toggleModal }: Props) => {
+const ChangeForm = ({ operation, toggleModal, type }: Props) => {
   const dispatch = useDispatch();
 
   const [price, setPrice] = useState(operation.price);
@@ -44,7 +44,10 @@ const ChangeForm = ({ operation, toggleModal }: Props) => {
   const onSubmit = (evt: FormEvent) => {
     evt.preventDefault();
     toggleModal();
-    dispatch(changeExpense({ price, description, date, id: operation.id }));
+
+    const newChanges = { price, description, date, id: operation.id };
+
+    dispatch(changeExpense({ type, newChanges }));
   };
 
   return (

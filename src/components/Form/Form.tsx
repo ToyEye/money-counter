@@ -1,9 +1,11 @@
 import { nanoid } from "nanoid";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux/es/exports";
-import { addExpense } from "../../redux/money/reducer";
+import { addNote } from "../../redux/money/reducer";
 
-const Form = () => {
+import { TType } from "../../types/types";
+
+const Form = ({ type }: TType) => {
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -16,7 +18,8 @@ const Form = () => {
     initialValues,
     onSubmit: (values) => {
       const newNote = { ...values, id: nanoid() };
-      dispatch(addExpense(newNote));
+
+      dispatch(addNote({ type, newNote }));
     },
   });
 

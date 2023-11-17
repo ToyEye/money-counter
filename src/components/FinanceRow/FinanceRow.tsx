@@ -10,9 +10,10 @@ import { IValues } from "../../types/types";
 
 type Props = {
   operation: IValues;
+  type: string;
 };
 
-const FinanceRow = ({ operation }: Props) => {
+const FinanceRow = ({ operation, type }: Props) => {
   const dispatch = useDispatch();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,7 +36,7 @@ const FinanceRow = ({ operation }: Props) => {
         <TableData>
           <button
             type="button"
-            onClick={() => dispatch(deleteExpense(operation.id))}
+            onClick={() => dispatch(deleteExpense({ type, id: operation.id }))}
           >
             X
           </button>
@@ -43,7 +44,11 @@ const FinanceRow = ({ operation }: Props) => {
       </TableRow>
       {isModalOpen && (
         <Modal>
-          <ChangeForm operation={operation} toggleModal={toggleModal} />
+          <ChangeForm
+            operation={operation}
+            toggleModal={toggleModal}
+            type={type}
+          />
         </Modal>
       )}
     </>
