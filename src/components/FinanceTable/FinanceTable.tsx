@@ -1,4 +1,6 @@
 import FinanceRow from "../FinanceRow/FinanceRow";
+import { useSelector } from "react-redux";
+import { getExpenses } from "../../redux/money/selectors";
 
 import {
   Table,
@@ -8,15 +10,11 @@ import {
   TableBody,
 } from "./FinanceTable.style";
 
-import { TValuesList, IValues } from "../../types/types";
+import { IValues } from "../../types/types";
 
-type Props = {
-  account: TValuesList;
-  deleteNote: (arg: string) => void;
-  changeNote: (arg: IValues) => void;
-};
+const FinanceTable = () => {
+  const account = useSelector(getExpenses);
 
-const FinanceTable = ({ account, deleteNote, changeNote }: Props) => {
   return (
     <Table>
       <TableHead>
@@ -28,14 +26,7 @@ const FinanceTable = ({ account, deleteNote, changeNote }: Props) => {
       </TableHead>
       <TableBody>
         {account.map((operation: IValues) => {
-          return (
-            <FinanceRow
-              key={operation.id}
-              operation={operation}
-              deleteNote={deleteNote}
-              changeNote={changeNote}
-            />
-          );
+          return <FinanceRow key={operation.id} operation={operation} />;
         })}
       </TableBody>
     </Table>

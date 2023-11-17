@@ -1,18 +1,20 @@
 import { useState } from "react";
-
-import { IValues } from "../../types/types";
+import { useDispatch } from "react-redux";
 import { TableData, TableRow } from "./FinanceRow.styled";
 
 import Modal from "../Modal/Modal";
 import ChangeForm from "../ChangeForm/ChangeForm";
 
+import { deleteExpense } from "../../redux/money/reducer";
+import { IValues } from "../../types/types";
+
 type Props = {
   operation: IValues;
-  deleteNote: (arg: string) => void;
-  changeNote: (arg: IValues) => void;
 };
 
-const FinanceRow = ({ operation, deleteNote, changeNote }: Props) => {
+const FinanceRow = ({ operation }: Props) => {
+  const dispatch = useDispatch();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -31,18 +33,17 @@ const FinanceRow = ({ operation, deleteNote, changeNote }: Props) => {
           </button>
         </TableData>
         <TableData>
-          <button type="button" onClick={() => deleteNote(operation.id)}>
+          <button
+            type="button"
+            onClick={() => dispatch(deleteExpense(operation.id))}
+          >
             X
           </button>
         </TableData>
       </TableRow>
       {isModalOpen && (
         <Modal>
-          <ChangeForm
-            operation={operation}
-            changeNote={changeNote}
-            toggleModal={toggleModal}
-          />
+          <ChangeForm operation={operation} toggleModal={toggleModal} />
         </Modal>
       )}
     </>

@@ -1,12 +1,11 @@
 import { nanoid } from "nanoid";
 import { useFormik } from "formik";
-import { IValues } from "../../types/types";
+import { useDispatch } from "react-redux/es/exports";
+import { addExpense } from "../../redux/money/reducer";
 
-type Props = {
-  onSubmit: (args: IValues) => void;
-};
+const Form = () => {
+  const dispatch = useDispatch();
 
-const Form = ({ onSubmit }: Props) => {
   const initialValues = {
     price: "",
     description: "",
@@ -17,8 +16,7 @@ const Form = ({ onSubmit }: Props) => {
     initialValues,
     onSubmit: (values) => {
       const newNote = { ...values, id: nanoid() };
-
-      onSubmit(newNote);
+      dispatch(addExpense(newNote));
     },
   });
 

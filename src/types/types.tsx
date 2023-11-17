@@ -6,3 +6,8 @@ export interface IValues {
 }
 
 export type TValuesList = IValues[];
+
+export interface IMoney {
+  expenses: TValuesList;
+  income: TValuesList;
+}

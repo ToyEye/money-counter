@@ -1,16 +1,21 @@
 import { useState, ChangeEvent, FormEvent } from "react";
+import { useDispatch } from "react-redux";
 
 import { Form, FormWrapper, Button } from "./ChangeForm.styled";
 import ButtonClose from "../ButtonClose/ButtonClose";
+
+import { changeExpense } from "../../redux/money/reducer";
 import { IValues } from "../../types/types";
 
 type Props = {
   operation: IValues;
-  changeNote: (arg: IValues) => void;
+
   toggleModal: () => void;
 };
 
-const ChangeForm = ({ operation, changeNote, toggleModal }: Props) => {
+const ChangeForm = ({ operation, toggleModal }: Props) => {
+  const dispatch = useDispatch();
+
   const [price, setPrice] = useState(operation.price);
   const [description, setDescription] = useState(operation.description);
   const [date, setDate] = useState(operation.date);
@@ -39,7 +44,7 @@ const ChangeForm = ({ operation, changeNote, toggleModal }: Props) => {
   const onSubmit = (evt: FormEvent) => {
     evt.preventDefault();
     toggleModal();
-    changeNote({ price, description, date, id: operation.id });
+    dispatch(changeExpense({ price, description, date, id: operation.id }));
   };
 
   return (
