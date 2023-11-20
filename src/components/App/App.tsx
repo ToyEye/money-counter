@@ -26,7 +26,6 @@ function App() {
           </TabPanelStyled>
         </TabWrapper>
       </TabsStyled>
-      <div></div>
     </AppWrapper>
   );
 }

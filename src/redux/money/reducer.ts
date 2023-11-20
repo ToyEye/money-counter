@@ -23,7 +23,7 @@ const moneySlice = createSlice({
   reducers: {
     addNote: (state, action: PayloadAction<TRedux>) => {
       const { type, newNote } = action.payload;
-      console.log(type); //expenses
+
       state[type].push(newNote);
     },
     deleteExpense: (state, action: PayloadAction<TDelProp>) => {

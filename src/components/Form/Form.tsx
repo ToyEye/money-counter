@@ -1,8 +1,14 @@
 import { nanoid } from "nanoid";
 import { useFormik } from "formik";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch } from "react-redux/es/exports";
+import { formatDate } from "../../helpers/formateDate";
 
 import Section from "../Section/Section";
+import { FormStyled, Label, Input, SubmitBtn } from "./Form.styled";
+
 import { addNote } from "../../redux/money/reducer";
 
 import { TType } from "../../types/types";
@@ -13,13 +19,17 @@ const Form = ({ type }: TType) => {
   const initialValues = {
     price: "",
     description: "",
-    date: "",
+    date: new Date(),
   };
 
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
-      const newNote = { ...values, id: nanoid() };
+      const newNote = {
+        ...values,
+        id: nanoid(),
+        date: formatDate(values.date),
+      };
 
       dispatch(addNote({ type, newNote }));
     },
@@ -27,36 +37,42 @@ const Form = ({ type }: TType) => {
 
   return (
     <Section>
-      <form onSubmit={formik.handleSubmit}>
-        <label>
-          <input
+      <FormStyled onSubmit={formik.handleSubmit}>
+        <Label>
+          <span>Type price</span>
+          <Input
             id="price"
             name="price"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.price}
           />
-        </label>
-        <label>
-          <input
+        </Label>
+        <Label>
+          <span>Type description</span>
+          <Input
             id="description"
             name="description"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.description}
           />
-        </label>
-        <label>
-          <input
+        </Label>
+        <Label>
+          <span>Pick date</span>
+          <DatePicker
+            showIcon
             id="date"
             name="date"
-            type="date"
-            onChange={formik.handleChange}
-            value={formik.values.date}
+            onChange={(date) => formik.setFieldValue("date", date)}
+            selected={formik.values.date}
+            customInput={<Input />}
           />
-        </label>
-        <button type="submit"> sub</button>
-      </form>
+        </Label>
+        <SubmitBtn type="submit" goal={type}>
+          Add
+        </SubmitBtn>
+      </FormStyled>
     </Section>
   );
 };
