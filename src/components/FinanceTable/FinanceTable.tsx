@@ -1,6 +1,7 @@
 import FinanceRow from "../FinanceRow/FinanceRow";
 import { useSelector } from "react-redux";
-import { getExpenses } from "../../redux/money/selectors";
+
+import Section from "../Section/Section";
 
 import {
   Table,
@@ -16,22 +17,28 @@ const FinanceTable = ({ type }: TType) => {
   const account = useSelector((state) => state[type]);
 
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableHeader>Price</TableHeader>
-          <TableHeader>Description</TableHeader>
-          <TableHeader>Date</TableHeader>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {account.map((operation: IValues) => {
-          return (
-            <FinanceRow key={operation.id} operation={operation} type={type} />
-          );
-        })}
-      </TableBody>
-    </Table>
+    <Section>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeader>Price</TableHeader>
+            <TableHeader>Description</TableHeader>
+            <TableHeader>Date</TableHeader>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {account.map((operation: IValues) => {
+            return (
+              <FinanceRow
+                key={operation.id}
+                operation={operation}
+                type={type}
+              />
+            );
+          })}
+        </TableBody>
+      </Table>
+    </Section>
   );
 };
 

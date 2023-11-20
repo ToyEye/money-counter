@@ -29,7 +29,7 @@ export const TabListStyled = styled(TabList)`
 `;
 
 export const TabWrapper = styled.div`
-  padding-left: 120px;
+  width: 100%;
 `;
 
 export const TabStyled = styled(Tab)`

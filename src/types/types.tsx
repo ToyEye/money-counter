@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface IValues {
   price: string;
   description: string;
@@ -19,4 +21,8 @@ export type TType = {
 export type TRedux = {
   type: string;
   newNote: IValues;
+};
+
+export type ChildrenProps = {
+  children: ReactNode;
 };

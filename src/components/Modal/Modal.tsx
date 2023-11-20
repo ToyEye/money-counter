@@ -1,15 +1,11 @@
-import { ReactNode } from "react";
 import { createPortal } from "react-dom";
 
 import { ModalWrapper } from "./Modal.styled";
+import { ChildrenProps } from "../../types/types";
 
 const modalPortal = document.querySelector("#modal-root");
 
-type Props = {
-  children: ReactNode;
-};
-
-const Modal = ({ children }: Props) => {
+const Modal = ({ children }: ChildrenProps) => {
   if (!modalPortal) {
     return;
   }
