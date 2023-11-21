@@ -10,4 +10,19 @@ export const TableRow = styled.tr`
 
 export const TableData = styled.td`
   padding: 15px;
+
+  &.expenses {
+    color: red;
+  }
+
+  &.income {
+    color: green;
+  }
+`;
+
+export const BtnWrapper = styled(TableData)`
+  display: flex;
+  gap: 20px;
+  padding-left: 0;
+  padding-right: 0;
 `;

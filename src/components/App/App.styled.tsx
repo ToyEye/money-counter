@@ -20,7 +20,7 @@ export const TabListStyled = styled(TabList)`
 
   padding-top: 15px;
   padding-bottom: 15px;
-  background-color: #3dc2d6;
+  background-color: #084a31;
 `;
 
 export const TabWrapper = styled.div`
@@ -31,11 +31,12 @@ export const TabStyled = styled(Tab)`
   color: #fff;
   font-size: 18px;
   cursor: pointer;
+  letter-spacing: 0.04em;
   transition: 350ms cubic-bezier(0.19, 1, 0.22, 1);
 
   &.react-tabs__tab--selected {
     text-decoration: underline;
-    color: red;
+    color: #007bff;
   }
 `;
 

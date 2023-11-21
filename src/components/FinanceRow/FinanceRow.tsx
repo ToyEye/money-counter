@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { TableData, TableRow } from "./FinanceRow.styled";
+import { TableData, TableRow, BtnWrapper } from "./FinanceRow.styled";
 
 import Modal from "../Modal/Modal";
 import ChangeForm from "../ChangeForm/ChangeForm";
@@ -25,22 +25,21 @@ const FinanceRow = ({ operation, type }: Props) => {
   return (
     <>
       <TableRow>
-        <TableData>{operation.price}</TableData>
+        <TableData className={type}>{operation.price}</TableData>
         <TableData>{operation.description}</TableData>
         <TableData>{operation.date}</TableData>
-        <TableData>
+        {/* <TableData></TableData> */}
+        <BtnWrapper>
           <button type="button" onClick={toggleModal}>
             Change
           </button>
-        </TableData>
-        <TableData>
           <button
             type="button"
             onClick={() => dispatch(deleteExpense({ type, id: operation.id }))}
           >
             X
           </button>
-        </TableData>
+        </BtnWrapper>
       </TableRow>
       {isModalOpen && (
         <Modal>
