@@ -13,11 +13,16 @@ function App() {
     <AppWrapper>
       <TabsStyled>
         <TabListStyled>
+          <TabStyled>Summary </TabStyled>
+
           <TabStyled>Expenses </TabStyled>
 
           <TabStyled>Income </TabStyled>
         </TabListStyled>
         <TabWrapper>
+          <TabPanelStyled>
+            <MoneyCounter type="summary" />
+          </TabPanelStyled>
           <TabPanelStyled>
             <MoneyCounter type="expenses" />
           </TabPanelStyled>

@@ -29,17 +29,21 @@ const FinanceRow = ({ operation, type }: Props) => {
         <TableData>{operation.description}</TableData>
         <TableData>{operation.date}</TableData>
         {/* <TableData></TableData> */}
-        <BtnWrapper>
-          <button type="button" onClick={toggleModal}>
-            Change
-          </button>
-          <button
-            type="button"
-            onClick={() => dispatch(deleteExpense({ type, id: operation.id }))}
-          >
-            X
-          </button>
-        </BtnWrapper>
+        {type !== "summary" && (
+          <BtnWrapper>
+            <button type="button" onClick={toggleModal}>
+              Change
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                dispatch(deleteExpense({ type, id: operation.id }))
+              }
+            >
+              X
+            </button>
+          </BtnWrapper>
+        )}
       </TableRow>
       {isModalOpen && (
         <Modal>
