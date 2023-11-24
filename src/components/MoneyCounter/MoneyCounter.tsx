@@ -9,7 +9,7 @@ const MoneyCounter = ({ type = "expenses" }) => {
       <Heading as="h1" className={type}>
         {type}
       </Heading>
-      <Form type={type} />
+      {type !== "summary" && <Form type={type} />}
       <FinanceTable type={type} />
     </div>
   );

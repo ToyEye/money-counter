@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { TableData, TableRow, BtnWrapper } from "./FinanceRow.styled";
+import { MdOutlineChangeCircle, MdDeleteForever } from "react-icons/md";
 
+import { TableData, TableRow, BtnWrapper, Button } from "./FinanceRow.styled";
 import Modal from "../Modal/Modal";
 import ChangeForm from "../ChangeForm/ChangeForm";
 
@@ -31,17 +32,17 @@ const FinanceRow = ({ operation, type }: Props) => {
         {/* <TableData></TableData> */}
         {type !== "summary" && (
           <BtnWrapper>
-            <button type="button" onClick={toggleModal}>
-              Change
-            </button>
-            <button
+            <Button type="button" onClick={toggleModal}>
+              <MdOutlineChangeCircle size={24} />
+            </Button>
+            <Button
               type="button"
               onClick={() =>
                 dispatch(deleteExpense({ type, id: operation.id }))
               }
             >
-              X
-            </button>
+              <MdDeleteForever size={24} />
+            </Button>
           </BtnWrapper>
         )}
       </TableRow>
