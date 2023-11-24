@@ -1,5 +1,4 @@
 import FinanceRow from "../FinanceRow/FinanceRow";
-import { useSelector } from "react-redux";
 
 import Section from "../Section/Section";
 
@@ -11,10 +10,15 @@ import {
   TableBody,
 } from "./FinanceTable.style";
 
+import { sortForDate } from "../../helpers/sortForDate";
+
 import { IValues, TType } from "../../types/types";
+import useReduxState from "../../hooks/useReduxState";
 
 const FinanceTable = ({ type }: TType) => {
-  const account = useSelector((state) => state[type]);
+  const account = useReduxState(type);
+
+  const sort = sortForDate(account);
 
   return (
     <Section>
@@ -27,7 +31,7 @@ const FinanceTable = ({ type }: TType) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {account.map((operation: IValues) => {
+          {sort.map((operation: IValues) => {
             return (
               <FinanceRow
                 key={operation.id}
