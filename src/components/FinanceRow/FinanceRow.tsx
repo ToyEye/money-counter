@@ -25,7 +25,7 @@ const FinanceRow = ({ operation, type }: Props) => {
   return (
     <>
       <TableRow>
-        <TableData className={type}>{operation.price}</TableData>
+        <TableData className={operation.type}>{operation.price}</TableData>
         <TableData>{operation.description}</TableData>
         <TableData>{operation.date}</TableData>
         {/* <TableData></TableData> */}

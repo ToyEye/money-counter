@@ -29,6 +29,7 @@ const Form = ({ type }: TType) => {
         ...values,
         id: nanoid(),
         date: formatDate(values.date),
+        type,
       };
 
       dispatch(addNote({ type, newNote }));

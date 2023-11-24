@@ -45,7 +45,7 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
     evt.preventDefault();
     toggleModal();
 
-    const newChanges = { price, description, date, id: operation.id };
+    const newChanges = { price, description, date, id: operation.id, type };
 
     dispatch(changeExpense({ type, newChanges }));
   };

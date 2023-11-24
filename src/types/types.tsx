@@ -5,6 +5,7 @@ export interface IValues {
   description: string;
   date: string;
   id: string;
+  type: string;
 }
 
 export interface IMoney {
