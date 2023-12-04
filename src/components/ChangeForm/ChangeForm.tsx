@@ -1,9 +1,17 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useDispatch } from "react-redux";
+import DatePicker from "react-datepicker";
 
-import { Form, FormWrapper, Button } from "./ChangeForm.styled";
+import {
+  Form,
+  FormWrapper,
+  Button,
+  LabelStyled,
+  InputStyled,
+} from "./ChangeForm.styled";
 import ButtonClose from "../ButtonClose/ButtonClose";
 
+import { formatDate } from "../../helpers/formateDate";
 import { changeExpense } from "../../redux/money/reducer";
 import { IValues } from "../../types/types";
 
@@ -18,7 +26,7 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
 
   const [price, setPrice] = useState(operation.price);
   const [description, setDescription] = useState(operation.description);
-  const [date, setDate] = useState(operation.date);
+  const [date, setDate] = useState(new Date(operation.date));
   const [changedType, setChangedType] = useState(operation.type);
 
   const onValueChange = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -31,10 +39,6 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
 
       case "description":
         setDescription(value);
-        break;
-
-      case "date":
-        setDate(value);
         break;
 
       case "type":
@@ -53,12 +57,12 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
     const changes = {
       price,
       description,
-      date,
+      date: formatDate(date),
       id: operation.id,
       type,
       changedType,
     };
-    console.log(changes);
+
     dispatch(changeExpense({ type, changes }));
   };
 
@@ -66,33 +70,35 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
     <FormWrapper>
       <ButtonClose onClick={toggleModal} />
       <Form onSubmit={onSubmit}>
-        <label>
+        <LabelStyled>
           Price
-          <input
+          <InputStyled
             type="text"
             value={price}
-            name="price"
+            name="changedPrice"
             onChange={onValueChange}
           />
-        </label>
-        <label>
+        </LabelStyled>
+        <LabelStyled>
           Description
-          <input
+          <InputStyled
             type="text"
             value={description}
-            name="description"
+            name="changedDescription"
             onChange={onValueChange}
           />
-        </label>
-        <label>
+        </LabelStyled>
+        <LabelStyled>
           Date
-          <input
-            type="date"
-            value={date}
-            name="date"
-            onChange={onValueChange}
+          <DatePicker
+            showIcon
+            id="date"
+            name="changedDate"
+            onChange={(date) => date && setDate(date)}
+            selected={date}
+            customInput={<InputStyled />}
           />
-        </label>
+        </LabelStyled>
         <div>
           Type of operation
           <label>

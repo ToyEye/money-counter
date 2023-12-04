@@ -12,5 +12,13 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  padding: 5px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  transition: 350ms cubic-bezier(0.19, 1, 0.22, 1);
+
+  &:is(:focus, :hover) {
+    transform: scale(1.3);
+  }
 `;

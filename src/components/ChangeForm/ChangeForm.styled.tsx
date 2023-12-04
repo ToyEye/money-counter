@@ -23,7 +23,7 @@ export const Button = styled.button`
   padding: 5px 10px;
   cursor: pointer;
   text-transform: capitalize;
-  background-color: #8b9cc2;
+  background-color: #243b6d;
   color: #fff;
 
   transition: 350ms cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -35,4 +35,14 @@ export const Button = styled.button`
   &:is(:focus, :hover) {
     background-color: #667daf;
   }
+`;
+
+export const LabelStyled = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+export const InputStyled = styled.input`
+  width: 100%;
 `;

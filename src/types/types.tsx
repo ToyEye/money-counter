@@ -6,7 +6,7 @@ export interface IValues {
   date: string;
   id: string;
   type: string;
-  changedType: string;
+  changedType?: string;
 }
 
 export interface IMoney {

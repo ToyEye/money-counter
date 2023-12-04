@@ -1,3 +1,4 @@
+import { MdClose } from "react-icons/md";
 import { Button } from "./ButtonClose.styled";
 
 type Props = {
@@ -7,7 +8,7 @@ type Props = {
 const ButtonClose = ({ onClick }: Props) => {
   return (
     <Button type="button" onClick={onClick}>
-      X
+      <MdClose size={20} />
     </Button>
   );
 };

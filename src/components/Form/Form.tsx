@@ -2,7 +2,6 @@ import { nanoid } from "nanoid";
 import { useFormik } from "formik";
 import DatePicker from "react-datepicker";
 
-import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch } from "react-redux/es/exports";
 import { formatDate } from "../../helpers/formateDate";
 

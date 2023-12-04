@@ -7,6 +7,7 @@ import {
   TabWrapper,
 } from "./App.styled";
 import MoneyCounter from "../MoneyCounter/MoneyCounter";
+import "react-datepicker/dist/react-datepicker.css";
 
 function App() {
   return (
