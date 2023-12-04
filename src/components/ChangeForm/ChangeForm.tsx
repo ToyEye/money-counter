@@ -19,6 +19,7 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
   const [price, setPrice] = useState(operation.price);
   const [description, setDescription] = useState(operation.description);
   const [date, setDate] = useState(operation.date);
+  const [changedType, setChangedType] = useState(operation.type);
 
   const onValueChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.target;
@@ -36,6 +37,10 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
         setDate(value);
         break;
 
+      case "type":
+        setChangedType(value);
+        break;
+
       default:
         break;
     }
@@ -45,9 +50,16 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
     evt.preventDefault();
     toggleModal();
 
-    const newChanges = { price, description, date, id: operation.id, type };
-
-    dispatch(changeExpense({ type, newChanges }));
+    const changes = {
+      price,
+      description,
+      date,
+      id: operation.id,
+      type,
+      changedType,
+    };
+    console.log(changes);
+    dispatch(changeExpense({ type, changes }));
   };
 
   return (
@@ -81,6 +93,27 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
             onChange={onValueChange}
           />
         </label>
+        <div>
+          Type of operation
+          <label>
+            Expenses
+            <input
+              type="radio"
+              name="type"
+              onChange={onValueChange}
+              value={"expenses"}
+            />
+          </label>
+          <label>
+            Income
+            <input
+              type="radio"
+              name="type"
+              onChange={onValueChange}
+              value={"income"}
+            />
+          </label>
+        </div>
         <Button type="submit">change</Button>
       </Form>
     </FormWrapper>

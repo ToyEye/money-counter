@@ -9,7 +9,7 @@ type TDelProp = {
 
 type TChangeProp = {
   type: string;
-  newChanges: IValues;
+  changes: IValues;
 };
 
 const initialState: IMoney = {
@@ -24,22 +24,39 @@ const moneySlice = createSlice({
     addNote: (state, action: PayloadAction<TRedux>) => {
       const { type, newNote } = action.payload;
 
-      state[type].push(newNote);
+      state[type as keyof IMoney].push(newNote);
     },
     deleteExpense: (state, action: PayloadAction<TDelProp>) => {
       const { type, id } = action.payload;
-      state[type] = state[type].filter((money) => money.id !== id);
+      state[type as keyof IMoney] = state[type as keyof IMoney].filter(
+        (money) => money.id !== id
+      );
     },
 
     changeExpense: (state, action: PayloadAction<TChangeProp>) => {
-      const {
-        type,
-        newChanges: { price, description, date, id },
-      } = action.payload;
+      const { type, changes } = action.payload;
 
-      state[type] = state[type].map((money) => {
-        return money.id === id ? { ...money, price, description, date } : money;
-      });
+      if (type === changes.changedType) {
+        state[type as keyof IMoney] = state[type as keyof IMoney].map(
+          (money) => {
+            return money.id === changes.id
+              ? {
+                  ...money,
+                  price: changes.price,
+                  description: changes.description,
+                  date: changes.date,
+                }
+              : money;
+          }
+        );
+      } else {
+        state[type as keyof IMoney] = state[type as keyof IMoney].filter(
+          (money) => {
+            return money.type !== changes.changedType;
+          }
+        );
+        state[changes.changedType as keyof IMoney].push(changes);
+      }
     },
   },
 });
