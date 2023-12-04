@@ -50,12 +50,15 @@ const moneySlice = createSlice({
           }
         );
       } else {
+        const newNote = { ...changes, type: changes.changedType };
+
+        state[changes.changedType as keyof IMoney].push(newNote);
+
         state[type as keyof IMoney] = state[type as keyof IMoney].filter(
           (money) => {
-            return money.type !== changes.changedType;
+            return money.id !== changes.id;
           }
         );
-        state[changes.changedType as keyof IMoney].push(changes);
       }
     },
   },
