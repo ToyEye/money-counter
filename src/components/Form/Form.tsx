@@ -30,7 +30,7 @@ const Form = ({ type }: TType) => {
         date: formatDate(values.date),
         type,
       };
-
+      console.log(newNote);
       dispatch(addNote({ type, newNote }));
     },
   });

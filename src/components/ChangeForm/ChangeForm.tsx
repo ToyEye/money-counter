@@ -8,6 +8,7 @@ import {
   Button,
   LabelStyled,
   InputStyled,
+  RadioBtnThumb,
 } from "./ChangeForm.styled";
 import ButtonClose from "../ButtonClose/ButtonClose";
 
@@ -33,11 +34,11 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
     const { name, value } = evt.target;
 
     switch (name) {
-      case "price":
+      case "changedPrice":
         setPrice(value);
         break;
 
-      case "description":
+      case "changedDescription":
         setDescription(value);
         break;
 
@@ -99,27 +100,33 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
             customInput={<InputStyled />}
           />
         </LabelStyled>
-        <div>
-          Type of operation
-          <label>
-            Expenses
-            <input
-              type="radio"
-              name="type"
-              onChange={onValueChange}
-              value={"expenses"}
-            />
-          </label>
-          <label>
-            Income
-            <input
-              type="radio"
-              name="type"
-              onChange={onValueChange}
-              value={"income"}
-            />
-          </label>
-        </div>
+        <RadioBtnThumb>
+          <p>Type of operation</p>
+          <div>
+            <label>
+              Expenses
+              <input
+                type="radio"
+                name="type"
+                onChange={onValueChange}
+                value={"expenses"}
+                // checked={operation.type === "expenses"}
+              />
+              <span></span>
+            </label>
+            <label>
+              Income
+              <input
+                type="radio"
+                name="type"
+                onChange={onValueChange}
+                value={"income"}
+                // checked={operation.type === "income"}
+              />
+              <span></span>
+            </label>
+          </div>
+        </RadioBtnThumb>
         <Button type="submit">change</Button>
       </Form>
     </FormWrapper>
