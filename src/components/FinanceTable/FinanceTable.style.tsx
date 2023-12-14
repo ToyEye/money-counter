@@ -9,6 +9,8 @@ export const Table = styled.table`
   box-shadow: -1px -2px 23px 9px rgba(71, 71, 71, 0.53);
   -webkit-box-shadow: -1px -2px 23px 9px rgba(71, 71, 71, 0.53);
   -moz-box-shadow: -1px -2px 23px 9px rgba(71, 71, 71, 0.53);
+
+  margin-bottom: 25px;
 `;
 
 export const TableHead = styled.thead``;

@@ -1,4 +1,4 @@
-import Form from "../Form/Form";
+import Form from "../Form/AddForm/Form";
 
 import { Heading } from "../Heading/Heading.styled";
 import FinanceTable from "../FinanceTable/FinanceTable";

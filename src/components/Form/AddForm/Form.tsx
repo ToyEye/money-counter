@@ -3,14 +3,14 @@ import { useFormik } from "formik";
 import DatePicker from "react-datepicker";
 
 import { useDispatch } from "react-redux/es/exports";
-import { formatDate } from "../../helpers/formateDate";
+import { formatDate } from "../../../helpers/formateDate";
 
-import Section from "../Section/Section";
+import Section from "../../Section/Section";
 import { FormStyled, Label, Input, SubmitBtn } from "./Form.styled";
 
-import { addNote } from "../../redux/money/reducer";
+import { addNote } from "../../../redux/money/reducer";
 
-import { TType } from "../../types/types";
+import { TType } from "../../../types/types";
 
 const Form = ({ type }: TType) => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const Form = ({ type }: TType) => {
         date: formatDate(values.date),
         type,
       };
-      console.log(newNote);
+
       dispatch(addNote({ type, newNote }));
     },
   });

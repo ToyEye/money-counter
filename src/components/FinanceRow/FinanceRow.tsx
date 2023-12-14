@@ -4,7 +4,7 @@ import { MdOutlineChangeCircle, MdDeleteForever } from "react-icons/md";
 
 import { TableData, TableRow, BtnWrapper, Button } from "./FinanceRow.styled";
 import Modal from "../Modal/Modal";
-import ChangeForm from "../ChangeForm/ChangeForm";
+import ChangeForm from "../Form/ChangeForm/ChangeForm";
 
 import { deleteExpense } from "../../redux/money/reducer";
 import { IValues } from "../../types/types";

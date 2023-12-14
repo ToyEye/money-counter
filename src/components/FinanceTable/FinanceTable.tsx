@@ -1,6 +1,8 @@
 import FinanceRow from "../FinanceRow/FinanceRow";
+import { useEffect, useState } from "react";
 
 import Section from "../Section/Section";
+import { Heading } from "../Heading/Heading.styled";
 
 import {
   Table,
@@ -16,9 +18,33 @@ import { IValues, TType } from "../../types/types";
 import useReduxState from "../../hooks/useReduxState";
 
 const FinanceTable = ({ type }: TType) => {
+  const [count, setCount] = useState(0);
+
   const account = useReduxState(type);
 
   const sort = sortForDate(account);
+
+  useEffect(() => {
+    const sortMoney = (type: string): number => {
+      return account
+        .filter((t) => t.type === type)
+        .map((t) => t.price)
+        .reduce((sum, mon) => sum + Number(mon), 0);
+    };
+
+    if (type === "summary") {
+      const expressMoney = sortMoney("expenses");
+
+      const incomeMoney = sortMoney("income");
+
+      setCount(incomeMoney - expressMoney);
+    } else {
+      const count = account
+        .map((t) => t.price)
+        .reduce((sum, t) => sum + Number(t), 0);
+      setCount(count);
+    }
+  }, [account, type]);
 
   return (
     <Section>
@@ -42,6 +68,9 @@ const FinanceTable = ({ type }: TType) => {
           })}
         </TableBody>
       </Table>
+      <Heading as="h1" className={type} count={count > 0 ? true : false}>
+        Total: <span>{count}</span>
+      </Heading>
     </Section>
   );
 };

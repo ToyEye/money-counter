@@ -10,11 +10,11 @@ import {
   InputStyled,
   RadioBtnThumb,
 } from "./ChangeForm.styled";
-import ButtonClose from "../ButtonClose/ButtonClose";
+import ButtonClose from "../../ButtonClose/ButtonClose";
 
-import { formatDate } from "../../helpers/formateDate";
-import { changeExpense } from "../../redux/money/reducer";
-import { IValues } from "../../types/types";
+import { formatDate } from "../../../helpers/formateDate";
+import { changeExpense } from "../../../redux/money/reducer";
+import { IValues } from "../../../types/types";
 
 type Props = {
   operation: IValues;
