@@ -1,5 +1,6 @@
 import FinanceRow from "../FinanceRow/FinanceRow";
 import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
 import Section from "../Section/Section";
 import { Heading } from "../Heading/Heading.styled";
@@ -57,15 +58,17 @@ const FinanceTable = ({ type }: TType) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {sort.map((operation: IValues) => {
-            return (
-              <FinanceRow
-                key={operation.id}
-                operation={operation}
-                type={type}
-              />
-            );
-          })}
+          <AnimatePresence initial={false}>
+            {sort.map((operation: IValues) => {
+              return (
+                <FinanceRow
+                  key={operation.id}
+                  operation={operation}
+                  type={type}
+                />
+              );
+            })}{" "}
+          </AnimatePresence>
         </TableBody>
       </Table>
       <Heading as="h1" className={type} count={count > 0 ? true : false}>

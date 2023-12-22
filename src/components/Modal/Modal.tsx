@@ -10,7 +10,17 @@ const Modal = ({ children }: ChildrenProps) => {
     return;
   }
 
-  return createPortal(<ModalWrapper>{children}</ModalWrapper>, modalPortal);
+  return createPortal(
+    <ModalWrapper
+      animate={{ scale: 1 }}
+      initial={{ scale: 0 }}
+      transition={{ duration: 0.2 }}
+      exit={{ scale: 0 }}
+    >
+      {children}
+    </ModalWrapper>,
+    modalPortal
+  );
 };
 
 export default Modal;

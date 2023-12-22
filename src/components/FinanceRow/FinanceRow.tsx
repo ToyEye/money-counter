@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { AnimatePresence } from "framer-motion";
 import { MdOutlineChangeCircle, MdDeleteForever } from "react-icons/md";
 
 import { TableData, TableRow, BtnWrapper, Button } from "./FinanceRow.styled";
@@ -25,7 +26,12 @@ const FinanceRow = ({ operation, type }: Props) => {
 
   return (
     <>
-      <TableRow>
+      <TableRow
+        initial={{ y: -300 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.3 }}
+        exit={{ y: -300 }}
+      >
         <TableData className={operation.type}>{operation.price}</TableData>
         <TableData>{operation.description}</TableData>
         <TableData>{operation.date}</TableData>
@@ -46,15 +52,17 @@ const FinanceRow = ({ operation, type }: Props) => {
           </BtnWrapper>
         )}
       </TableRow>
-      {isModalOpen && (
-        <Modal>
-          <ChangeForm
-            operation={operation}
-            toggleModal={toggleModal}
-            type={type}
-          />
-        </Modal>
-      )}
+      <AnimatePresence initial={false}>
+        {isModalOpen && (
+          <Modal>
+            <ChangeForm
+              operation={operation}
+              toggleModal={toggleModal}
+              type={type}
+            />
+          </Modal>
+        )}
+      </AnimatePresence>
     </>
   );
 };

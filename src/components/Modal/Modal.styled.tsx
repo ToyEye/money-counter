@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const ModalWrapper = styled.div`
+export const ModalWrapper = styled(motion.div)`
   position: absolute;
   top: 0;
   left: 0;

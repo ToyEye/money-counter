@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const TableRow = styled.tr`
+export const TableRow = styled(motion.tr)`
   border-bottom: 1px solid black;
 
   &:last-child {
