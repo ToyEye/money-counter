@@ -1,38 +1,21 @@
-import {
-  TabListStyled,
-  TabPanelStyled,
-  TabStyled,
-  TabsStyled,
-  AppWrapper,
-  TabWrapper,
-} from "./App.styled";
-import MoneyCounter from "../MoneyCounter/MoneyCounter";
+import { Route, Routes } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
+
+import Layout from "../Layout/Layout";
+
+import Home from "../../pages/Home/Home";
+import Counter from "../../pages/Counter/Counter";
+
+import { router } from "../../routes";
 
 function App() {
   return (
-    <AppWrapper>
-      <TabsStyled>
-        <TabListStyled>
-          <TabStyled>Summary </TabStyled>
-
-          <TabStyled>Expenses </TabStyled>
-
-          <TabStyled>Income </TabStyled>
-        </TabListStyled>
-        <TabWrapper>
-          <TabPanelStyled>
-            <MoneyCounter type="summary" />
-          </TabPanelStyled>
-          <TabPanelStyled>
-            <MoneyCounter type="expenses" />
-          </TabPanelStyled>
-          <TabPanelStyled>
-            <MoneyCounter type="income" />
-          </TabPanelStyled>
-        </TabWrapper>
-      </TabsStyled>
-    </AppWrapper>
+    <Routes>
+      <Route path={router.HOME} element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path={router.COUNT} element={<Counter />} />
+      </Route>
+    </Routes>
   );
 }
 

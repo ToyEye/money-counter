@@ -27,4 +27,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: inherit;
     }
 
+    main {
+        height: calc(100vh - 48px - 48px);
+    }
 `;
