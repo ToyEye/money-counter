@@ -12,6 +12,9 @@ const HeaderLayout = () => {
           <li>
             <NavLinkStyled to={router.COUNT}>Count</NavLinkStyled>
           </li>
+          <li>
+            <NavLinkStyled to={router.SIGNUP}>Sign up</NavLinkStyled>
+          </li>
         </NavList>
       </nav>
     </Header>

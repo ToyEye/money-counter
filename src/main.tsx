@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import store, { persistor } from "./redux/store.ts";
 import App from "./components/App/App.tsx";
 import { GlobalStyle } from "./style/GlobalStyle.tsx";
+import "./firebase.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
