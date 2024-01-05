@@ -6,6 +6,7 @@ import Layout from "../Layout/Layout";
 import Home from "../../pages/Home/Home";
 import Counter from "../../pages/Counter/Counter";
 import SignUp from "../../pages/SignUp/SignUp";
+import Login from "../../pages/Login/Login";
 
 import { router } from "../../routes";
 
@@ -16,6 +17,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path={router.COUNT} element={<Counter />} />
         <Route path={router.SIGNUP} element={<SignUp />} />
+        <Route path={router.LOGIN} element={<Login />} />
       </Route>
     </Routes>
   );

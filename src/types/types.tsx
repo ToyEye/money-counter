@@ -5,7 +5,7 @@ export interface IValues {
   description: string;
   date: string;
   id: string;
-  type: string;
+  type: string | undefined;
   changedType?: string;
 }
 

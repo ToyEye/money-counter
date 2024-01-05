@@ -1,8 +1,4 @@
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 
 import { useFormik } from "formik";
@@ -10,9 +6,8 @@ import { useFormik } from "formik";
 import Section from "../../../Section/Section";
 import Container from "../../../Container/Container";
 
-const SignUpForm = () => {
+const LoginForm = () => {
   const initialValues = {
-    name: "",
     email: "",
     password: "",
   };
@@ -23,14 +18,12 @@ const SignUpForm = () => {
     initialValues,
     onSubmit: async (values) => {
       try {
-        const { user } = await createUserWithEmailAndPassword(
+        const { user } = await signInWithEmailAndPassword(
           auth,
           values.email,
           values.password
         );
         console.log(user);
-
-        await updateProfile(user, { displayName: values.name });
       } catch (error: unknown) {
         if (error instanceof FirebaseError) {
           console.log(error.message);
@@ -43,15 +36,6 @@ const SignUpForm = () => {
     <Section>
       <Container>
         <form onSubmit={formik.handleSubmit}>
-          <label>
-            Name
-            <input
-              type="text"
-              name="name"
-              onChange={formik.handleChange}
-              value={formik.values.name}
-            />
-          </label>
           <label>
             Email
             <input
@@ -77,4 +61,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default LoginForm;

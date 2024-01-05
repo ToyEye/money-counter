@@ -15,6 +15,9 @@ const HeaderLayout = () => {
           <li>
             <NavLinkStyled to={router.SIGNUP}>Sign up</NavLinkStyled>
           </li>
+          <li>
+            <NavLinkStyled to={router.LOGIN}>Login</NavLinkStyled>
+          </li>
         </NavList>
       </nav>
     </Header>
