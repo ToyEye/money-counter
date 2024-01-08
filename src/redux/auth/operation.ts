@@ -2,6 +2,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
+  signOut,
 } from "firebase/auth";
 
 import { FirebaseError } from "firebase/app";
@@ -54,3 +55,11 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    return thunkAPI.rejectWithValue("An error occurred during logout.");
+  }
+});

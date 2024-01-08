@@ -1,7 +1,14 @@
-import { router } from "../../../routes";
+import { useAppSelector } from "../../../hooks/useReduxHooks";
+
 import { NavLinkStyled, Header, NavList } from "./Header.styled";
+import UserBar from "../../UserBar/UserBar";
+import AuthBar from "../../AuthBar/AuthBar";
+import { router } from "../../../routes";
+import { authSelector } from "../../../redux/auth/selectors";
 
 const HeaderLayout = () => {
+  const { isLogin } = useAppSelector(authSelector);
+
   return (
     <Header>
       <nav>
@@ -9,17 +16,17 @@ const HeaderLayout = () => {
           <li>
             <NavLinkStyled to={router.HOME}>Home</NavLinkStyled>
           </li>
-          <li>
-            <NavLinkStyled to={router.COUNT}>Count</NavLinkStyled>
-          </li>
-          <li>
-            <NavLinkStyled to={router.SIGNUP}>Sign up</NavLinkStyled>
-          </li>
-          <li>
-            <NavLinkStyled to={router.LOGIN}>Login</NavLinkStyled>
-          </li>
+
+          {isLogin ? (
+            <li>
+              <NavLinkStyled to={router.COUNT}>Count</NavLinkStyled>
+            </li>
+          ) : (
+            <AuthBar />
+          )}
         </NavList>
       </nav>
+      {isLogin && <UserBar />}
     </Header>
   );
 };

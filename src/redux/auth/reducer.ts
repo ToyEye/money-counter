@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { loginUser, signUpUser } from "./operation";
+import { loginUser, signUpUser, logout } from "./operation";
 import { TAuth, User } from "../../types/types";
 
 const initialState: TAuth = {
@@ -29,6 +29,7 @@ const handleFulfilled = (
     state.user.email = action.payload.email;
     state.user.name = action.payload.displayName;
     state.token = action.payload.accessToken;
+    state.isLogin = true;
   }
 };
 const authSlice = createSlice({
@@ -39,6 +40,13 @@ const authSlice = createSlice({
     builder
       .addCase(loginUser.fulfilled, handleFulfilled)
       .addCase(signUpUser.fulfilled, handleFulfilled)
+      .addCase(logout.fulfilled, (state) => {
+        state.isLoading = false;
+        state.user.email = "";
+        state.user.name = "";
+        state.token = null;
+        state.isLogin = false;
+      })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
