@@ -2,9 +2,11 @@ import { createSelector } from "reselect";
 
 import { IMoney } from "../../types/types";
 
-export const getExpenses = (state: IMoney) => state.expenses;
+type TMoney = { money: IMoney };
 
-export const getIncome = (state: IMoney) => state.income;
+export const getExpenses = (state: TMoney) => state.money.expenses;
+
+export const getIncome = (state: TMoney) => state.money.income;
 
 export const getSummary = createSelector(
   [getExpenses, getIncome],

@@ -28,3 +28,25 @@ export type TRedux = {
 export type ChildrenProps = {
   children: ReactNode;
 };
+
+export type User = {
+  password?: string | null;
+  email: string | null;
+  name?: string | null;
+  displayName?: string | null;
+  accessToken?: string | undefined;
+};
+
+export type TAuth = {
+  user: User;
+  isLogin: boolean;
+  token: null | string | undefined;
+  isLoading: boolean;
+  error: string | null | undefined;
+};
+
+export type TCredential = {
+  name?: string;
+  email: string;
+  password: string;
+};

@@ -1,34 +1,24 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { FirebaseError } from "firebase/app";
+import { useAppDispatch } from "../../../../hooks/useReduxHooks";
 
 import { useFormik } from "formik";
 
 import Section from "../../../Section/Section";
 import Container from "../../../Container/Container";
 
+import { loginUser } from "../../../../redux/auth/operation";
+
 const LoginForm = () => {
+  const dispatch = useAppDispatch();
+
   const initialValues = {
     email: "",
     password: "",
   };
 
-  const auth = getAuth();
-
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      try {
-        const { user } = await signInWithEmailAndPassword(
-          auth,
-          values.email,
-          values.password
-        );
-        console.log(user);
-      } catch (error: unknown) {
-        if (error instanceof FirebaseError) {
-          console.log(error.message);
-        }
-      }
+      dispatch(loginUser({ email: values.email, password: values.password }));
     },
   });
 

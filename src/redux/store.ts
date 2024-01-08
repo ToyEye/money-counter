@@ -1,32 +1,23 @@
 import { configureStore } from "@reduxjs/toolkit";
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
+import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import "../firebase";
 
-import moneySlice from "./money/reducer";
+import moneyReducer from "./money/reducer";
+import authReducer from "./auth/reducer";
 
 const persistConfig = {
   key: "root",
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, moneySlice);
+const persistedReducer = persistReducer(persistConfig, moneyReducer);
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: { money: persistedReducer, auth: authReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
     }),
 });
 

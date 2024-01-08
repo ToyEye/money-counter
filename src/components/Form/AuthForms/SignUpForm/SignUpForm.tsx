@@ -1,11 +1,6 @@
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
-import { FirebaseError } from "firebase/app";
-
 import { useFormik } from "formik";
+import { useAppDispatch } from "../../../../hooks/useReduxHooks";
+import { signUpUser } from "../../../../redux/auth/operation";
 
 import Section from "../../../Section/Section";
 import Container from "../../../Container/Container";
@@ -16,26 +11,12 @@ const SignUpForm = () => {
     email: "",
     password: "",
   };
-
-  const auth = getAuth();
+  const dispatch = useAppDispatch();
 
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      try {
-        const { user } = await createUserWithEmailAndPassword(
-          auth,
-          values.email,
-          values.password
-        );
-        console.log(user);
-
-        await updateProfile(user, { displayName: values.name });
-      } catch (error: unknown) {
-        if (error instanceof FirebaseError) {
-          console.log(error.message);
-        }
-      }
+      dispatch(signUpUser(values));
     },
   });
 
