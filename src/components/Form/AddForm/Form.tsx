@@ -6,7 +6,8 @@ import { useDispatch } from "react-redux/es/exports";
 import { formatDate } from "../../../helpers/formateDate";
 
 import Section from "../../reusable/Section/Section";
-import { FormStyled, Label, Input, SubmitBtn } from "./Form.styled";
+import { FormStyled, Label, Input } from "./Form.styled";
+import Button from "../../reusable/Button/Button";
 
 import { addNote } from "../../../redux/money/reducer";
 
@@ -69,9 +70,9 @@ const Form = ({ type }: TType) => {
             customInput={<Input />}
           />
         </Label>
-        <SubmitBtn type="submit" goal={type}>
+        <Button type="submit" goal={type} className="addMoney">
           Add
-        </SubmitBtn>
+        </Button>
       </FormStyled>
     </Section>
   );

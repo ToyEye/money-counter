@@ -3,9 +3,10 @@ import { useDispatch } from "react-redux";
 import { AnimatePresence } from "framer-motion";
 import { MdOutlineChangeCircle, MdDeleteForever } from "react-icons/md";
 
-import { TableData, TableRow, BtnWrapper, Button } from "./FinanceRow.styled";
+import { TableData, TableRow, BtnWrapper } from "./FinanceRow.styled";
 import Modal from "../Modal/Modal";
 import ChangeForm from "../Form/ChangeForm/ChangeForm";
+import Button from "../reusable/Button/Button";
 
 import { deleteExpense } from "../../redux/money/reducer";
 import { IValues } from "../../types/types";
@@ -35,13 +36,14 @@ const FinanceRow = ({ operation, type }: Props) => {
         <TableData className={operation.type}>{operation.price}</TableData>
         <TableData>{operation.description}</TableData>
         <TableData>{operation.date}</TableData>
-        {/* <TableData></TableData> */}
+
         {type !== "summary" && (
           <BtnWrapper>
-            <Button type="button" onClick={toggleModal}>
+            <Button type="button" onClick={toggleModal} className="finance">
               <MdOutlineChangeCircle size={24} />
             </Button>
             <Button
+              className="finance"
               type="button"
               onClick={() =>
                 dispatch(deleteExpense({ type, id: operation.id }))

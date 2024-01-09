@@ -1,16 +1,17 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
+import { MdClose } from "react-icons/md";
 
 import {
   Form,
   FormWrapper,
-  Button,
   LabelStyled,
   InputStyled,
   RadioBtnThumb,
 } from "./ChangeForm.styled";
-import ButtonClose from "../../ButtonClose/ButtonClose";
+
+import Button from "../../reusable/Button/Button";
 
 import { formatDate } from "../../../helpers/formateDate";
 import { changeExpense } from "../../../redux/money/reducer";
@@ -69,7 +70,10 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
 
   return (
     <FormWrapper>
-      <ButtonClose onClick={toggleModal} />
+      <Button onClick={toggleModal} type="string" className="buttonClose">
+        <MdClose size={20} />
+      </Button>
+
       <Form onSubmit={onSubmit}>
         <LabelStyled>
           Price
@@ -127,7 +131,9 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
             </label>
           </div>
         </RadioBtnThumb>
-        <Button type="submit">change</Button>
+        <Button type="submit" className="changeForm">
+          change
+        </Button>
       </Form>
     </FormWrapper>
   );
