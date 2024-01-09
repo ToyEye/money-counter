@@ -30,4 +30,9 @@ export const GlobalStyle = createGlobalStyle`
     main {
         height: calc(100vh - 48px - 48px);
     }
+
+    button {
+        cursor: pointer;
+        font-family: inherit;
+    }
 `;

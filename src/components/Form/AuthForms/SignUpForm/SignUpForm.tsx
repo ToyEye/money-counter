@@ -2,8 +2,8 @@ import { useFormik } from "formik";
 import { useAppDispatch } from "../../../../hooks/useReduxHooks";
 import { signUpUser } from "../../../../redux/auth/operation";
 
-import Section from "../../../Section/Section";
-import Container from "../../../Container/Container";
+import Section from "../../../reusable/Section/Section";
+import Container from "../../../reusable/Container/Container";
 
 const SignUpForm = () => {
   const initialValues = {

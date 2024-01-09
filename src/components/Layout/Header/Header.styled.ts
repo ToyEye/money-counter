@@ -4,15 +4,13 @@ import { NavLink } from "react-router-dom";
 export const Header = styled.header`
   height: 20px;
 
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+
   @media screen and (min-width: 768px) {
     height: auto;
   }
-`;
-
-export const NavList = styled.ul`
-  display: flex;
-  justify-content: center;
-  gap: 35px;
 `;
 
 export const NavLinkStyled = styled(NavLink)`

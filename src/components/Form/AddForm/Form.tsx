@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import { useDispatch } from "react-redux/es/exports";
 import { formatDate } from "../../../helpers/formateDate";
 
-import Section from "../../Section/Section";
+import Section from "../../reusable/Section/Section";
 import { FormStyled, Label, Input, SubmitBtn } from "./Form.styled";
 
 import { addNote } from "../../../redux/money/reducer";

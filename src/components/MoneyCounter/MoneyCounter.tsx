@@ -1,6 +1,6 @@
 import Form from "../Form/AddForm/Form";
 
-import { Heading } from "../Heading/Heading.styled";
+import { Heading } from "../reusable/Heading/Heading.styled";
 import FinanceTable from "../FinanceTable/FinanceTable";
 
 const MoneyCounter = ({ type = "expenses" }) => {

@@ -2,8 +2,8 @@ import FinanceRow from "../FinanceRow/FinanceRow";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
-import Section from "../Section/Section";
-import { Heading } from "../Heading/Heading.styled";
+import Section from "../reusable/Section/Section";
+import { Heading } from "../reusable/Heading/Heading.styled";
 
 import {
   Table,

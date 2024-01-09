@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../../hooks/useReduxHooks";
 import { logout } from "../../redux/auth/operation";
-import { Heading } from "../Heading/Heading.styled";
+import { Heading } from "../reusable/Heading/Heading.styled";
+import { UserBarWrapper } from "./UserBar.styled";
 import { authSelector } from "../../redux/auth/selectors";
 
 const UserBar = () => {
@@ -11,12 +12,12 @@ const UserBar = () => {
     dispatch(logout());
   };
   return (
-    <div>
+    <UserBarWrapper>
       <Heading as="h4">{user.name}</Heading>
       <button type="button" onClick={handleLogout}>
         LogOut
       </button>
-    </div>
+    </UserBarWrapper>
   );
 };
 

@@ -1,8 +1,10 @@
 import { useAppSelector } from "../../../hooks/useReduxHooks";
 
-import { NavLinkStyled, Header, NavList } from "./Header.styled";
+import { NavLinkStyled, Header } from "./Header.styled";
 import UserBar from "../../UserBar/UserBar";
 import AuthBar from "../../AuthBar/AuthBar";
+import { List } from "../../reusable/List/List";
+
 import { router } from "../../../routes";
 import { authSelector } from "../../../redux/auth/selectors";
 
@@ -12,21 +14,19 @@ const HeaderLayout = () => {
   return (
     <Header>
       <nav>
-        <NavList>
+        <List display="flex" gap="35px" content="center">
           <li>
             <NavLinkStyled to={router.HOME}>Home</NavLinkStyled>
           </li>
 
-          {isLogin ? (
+          {isLogin && (
             <li>
               <NavLinkStyled to={router.COUNT}>Count</NavLinkStyled>
             </li>
-          ) : (
-            <AuthBar />
           )}
-        </NavList>
+        </List>
       </nav>
-      {isLogin && <UserBar />}
+      {isLogin ? <UserBar /> : <AuthBar />}
     </Header>
   );
 };
