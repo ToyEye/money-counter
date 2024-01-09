@@ -5,6 +5,10 @@ interface IButtonProps {
 }
 
 export const ButtonStyled = styled.button<IButtonProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   &.changeForm {
     border-radius: 4px;
     padding: 5px 10px;
@@ -32,9 +36,6 @@ export const ButtonStyled = styled.button<IButtonProps>`
 
     width: 20px;
     height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: 50%;
     border: none;
     background-color: transparent;
@@ -47,10 +48,8 @@ export const ButtonStyled = styled.button<IButtonProps>`
   }
 
   &.addMoney {
-    display: flex;
     padding: 15px 5px;
-    justify-content: center;
-    align-items: center;
+
     height: 30px;
     border-radius: 50%;
 
@@ -72,10 +71,6 @@ export const ButtonStyled = styled.button<IButtonProps>`
   }
 
   &.finance {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     border: none;
 
     transition: 350ms cubic-bezier(0.445, 0.05, 0.55, 0.95);

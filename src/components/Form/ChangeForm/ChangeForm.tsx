@@ -7,11 +7,11 @@ import {
   Form,
   FormWrapper,
   LabelStyled,
-  InputStyled,
   RadioBtnThumb,
 } from "./ChangeForm.styled";
 
 import Button from "../../reusable/Button/Button";
+import { InputStyled } from "../../reusable/Input/Input.styled";
 
 import { formatDate } from "../../../helpers/formateDate";
 import { changeExpense } from "../../../redux/money/reducer";
@@ -87,6 +87,7 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
         <LabelStyled>
           Description
           <InputStyled
+            className="changeForm"
             type="text"
             value={description}
             name="changedDescription"
@@ -101,7 +102,7 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
             name="changedDate"
             onChange={(date) => date && setDate(date)}
             selected={date}
-            customInput={<InputStyled />}
+            customInput={<InputStyled className="changeForm" />}
           />
         </LabelStyled>
         <RadioBtnThumb>

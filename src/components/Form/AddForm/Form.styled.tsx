@@ -16,12 +16,3 @@ export const Label = styled.label`
     position: absolute;
   }
 `;
-
-export const Input = styled.input`
-  padding: 5px 10px 5px 10px;
-  border-radius: 6px;
-
-  &[name="date"] {
-    padding: 5px 10px 5px 25px;
-  }
-`;

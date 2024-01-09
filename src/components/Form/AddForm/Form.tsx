@@ -6,8 +6,9 @@ import { useDispatch } from "react-redux/es/exports";
 import { formatDate } from "../../../helpers/formateDate";
 
 import Section from "../../reusable/Section/Section";
-import { FormStyled, Label, Input } from "./Form.styled";
+import { FormStyled, Label } from "./Form.styled";
 import Button from "../../reusable/Button/Button";
+import { InputStyled } from "../../reusable/Input/Input.styled";
 
 import { addNote } from "../../../redux/money/reducer";
 
@@ -41,7 +42,8 @@ const Form = ({ type }: TType) => {
       <FormStyled onSubmit={formik.handleSubmit}>
         <Label>
           <span>Type price</span>
-          <Input
+          <InputStyled
+            className="addForm"
             id="price"
             name="price"
             type="text"
@@ -51,7 +53,8 @@ const Form = ({ type }: TType) => {
         </Label>
         <Label>
           <span>Type description</span>
-          <Input
+          <InputStyled
+            className="addForm"
             id="description"
             name="description"
             type="text"
@@ -67,7 +70,7 @@ const Form = ({ type }: TType) => {
             name="date"
             onChange={(date) => formik.setFieldValue("date", date)}
             selected={formik.values.date}
-            customInput={<Input />}
+            customInput={<InputStyled className="addForm" />}
           />
         </Label>
         <Button type="submit" goal={type} className="addMoney">
