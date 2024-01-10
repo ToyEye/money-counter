@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 
-import Section from "/@/components/reusable/Section/Section";
-import Container from "/@/components/reusable/Container/Container";
+import { Section, Container } from "/@/components/reusable";
 
 import { loginUser } from "/@/redux/auth/operation";
 import { useAppDispatch } from "/@/hooks/useReduxHooks";

@@ -1,5 +1,5 @@
 import { UserBarWrapper } from "./UserBar.styled";
-import { Heading } from "../reusable/Heading/Heading.styled";
+import { Heading } from "../reusable";
 
 import { useAppDispatch, useAppSelector } from "/@/hooks/useReduxHooks";
 import { logout } from "/@/redux/auth/operation";

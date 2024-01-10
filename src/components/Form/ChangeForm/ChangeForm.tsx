@@ -10,8 +10,7 @@ import {
   RadioBtnThumb,
 } from "./ChangeForm.styled";
 
-import { Button } from "/@/components/reusable";
-import { InputStyled } from "/@/components/reusable/Input/Input.styled";
+import { Button, InputStyled } from "/@/components/reusable";
 
 import { formatDate } from "/@/helpers/formateDate";
 import { changeExpense } from "/@/redux/money/reducer";

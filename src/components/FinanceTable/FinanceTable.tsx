@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
-import FinanceRow from "../FinanceRow/FinanceRow";
-import Section from "/@/components/reusable/Section/Section";
-import { Heading } from "/@/components/reusable/Heading/Heading.styled";
+import FinanceRow from "../FinanceRow";
+
+import { Heading, Section } from "/@/components/reusable";
 
 import {
   Table,

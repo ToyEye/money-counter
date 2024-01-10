@@ -4,7 +4,7 @@ import { NavLinkStyled, Header } from "./Header.styled";
 import UserBar from "/@/components/UserBar/UserBar";
 
 import AuthBar from "/@/components/AuthBar/AuthBar";
-import { List } from "/@/components/reusable/List/List";
+import { List } from "/@/components/reusable";
 
 import { router } from "/@/routes";
 import { authSelector } from "/@/redux/auth/selectors";

@@ -1,7 +1,7 @@
-import Form from "../Form/AddForm/Form";
+import { AddForm } from "../Form";
 
-import { Heading } from "/@/components/reusable/Heading/Heading.styled";
-import FinanceTable from "../FinanceTable/FinanceTable";
+import { Heading } from "/@/components/reusable";
+import FinanceTable from "../FinanceTable/";
 
 const MoneyCounter = ({ type = "expenses" }) => {
   return (
@@ -9,7 +9,7 @@ const MoneyCounter = ({ type = "expenses" }) => {
       <Heading as="h1" className={type}>
         {type}
       </Heading>
-      {type !== "summary" && <Form type={type} />}
+      {type !== "summary" && <AddForm type={type} />}
       <FinanceTable type={type} />
     </div>
   );
