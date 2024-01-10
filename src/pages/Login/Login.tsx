@@ -1,9 +1,9 @@
-import LoginForm from "../../components/Form/AuthForms/LoginForm/LoginForm";
+import { SignInForm } from "/@/components/Form";
 
 const Login = () => {
   return (
     <div>
-      <LoginForm />
+      <SignInForm />
     </div>
   );
 };

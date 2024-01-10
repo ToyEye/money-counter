@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
-import FinanceRow from "../FinanceRow";
-
 import { Heading, Section } from "/@/components/reusable";
+import FinanceRow from "../FinanceRow";
 
 import {
   Table,
@@ -15,8 +14,8 @@ import {
 
 import { sortForDate } from "/@/helpers/sortForDate";
 
-import { IValues, TType } from "/@/types/types";
-import useReduxState from "/@/hooks/useReduxState";
+import { IValues, TType } from "/@/types/";
+import { useReduxState } from "/@/hooks/";
 
 const FinanceTable = ({ type }: TType) => {
   const [count, setCount] = useState(0);

@@ -6,7 +6,7 @@ import {
   AppWrapper,
   TabWrapper,
 } from "./Counter.styled";
-import MoneyCounter from "../../components/MoneyCounter/MoneyCounter";
+import MoneyCounter from "../../components/MoneyCounter/";
 
 const Counter = () => {
   return (

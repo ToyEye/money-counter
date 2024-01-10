@@ -3,7 +3,7 @@ import { IValues } from "../types/types";
 import { getExpenses, getIncome, getSummary } from "../redux/money/selectors";
 import { useSelector } from "react-redux";
 
-const useReduxState = (type: string) => {
+export const useReduxState = (type: string) => {
   const [account, setAccount] = useState<IValues[]>([]);
 
   const expresses = useSelector(getExpenses);
@@ -31,5 +31,3 @@ const useReduxState = (type: string) => {
 
   return account;
 };
-
-export default useReduxState;

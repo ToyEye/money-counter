@@ -1,10 +1,9 @@
-import { useAppSelector } from "/@/hooks/useReduxHooks";
-
-import { NavLinkStyled, Header } from "./Header.styled";
-import UserBar from "/@/components/UserBar/UserBar";
-
-import AuthBar from "/@/components/AuthBar/AuthBar";
+import UserBar from "/@/components/UserBar";
+import AuthBar from "/@/components/AuthBar";
 import { List } from "/@/components/reusable";
+import { NavLinkStyled, Header } from "./Header.styled";
+
+import { useAppSelector } from "/@/hooks/";
 
 import { router } from "/@/routes";
 import { authSelector } from "/@/redux/auth/selectors";

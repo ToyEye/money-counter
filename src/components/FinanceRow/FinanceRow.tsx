@@ -3,13 +3,14 @@ import { useDispatch } from "react-redux";
 import { AnimatePresence } from "framer-motion";
 import { MdOutlineChangeCircle, MdDeleteForever } from "react-icons/md";
 
-import { TableData, TableRow, BtnWrapper } from "./FinanceRow.styled";
-import Modal from "../Modal/Modal";
-import ChangeForm from "../Form/ChangeForm/ChangeForm";
 import { Button } from "/@/components/reusable";
+import Modal from "../Modal/";
+import { ChangeForm } from "../Form";
+
+import { TableData, TableRow, BtnWrapper } from "./FinanceRow.styled";
 
 import { deleteExpense } from "/@/redux/money/reducer";
-import { IValues } from "/@/types/types";
+import { IValues } from "/@/types";
 
 type Props = {
   operation: IValues;

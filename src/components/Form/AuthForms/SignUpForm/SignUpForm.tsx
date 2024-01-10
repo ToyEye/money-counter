@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 
-import { useAppDispatch } from "/@/hooks/useReduxHooks";
+import { useAppDispatch } from "/@/hooks";
 import { signUpUser } from "/@/redux/auth/operation";
 
 import { Section, Container } from "/@/components/reusable";

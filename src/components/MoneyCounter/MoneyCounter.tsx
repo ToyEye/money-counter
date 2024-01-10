@@ -1,7 +1,7 @@
 import { AddForm } from "../Form";
 
 import { Heading } from "/@/components/reusable";
-import FinanceTable from "../FinanceTable/";
+import FinanceTable from "/@/components/FinanceTable/";
 
 const MoneyCounter = ({ type = "expenses" }) => {
   return (

@@ -12,9 +12,9 @@ import {
 
 import { Button, InputStyled } from "/@/components/reusable";
 
-import { formatDate } from "/@/helpers/formateDate";
+import { formatDate } from "/@/helpers/";
 import { changeExpense } from "/@/redux/money/reducer";
-import { IValues } from "/@/types/types";
+import { IValues } from "/@/types/";
 
 type Props = {
   operation: IValues;

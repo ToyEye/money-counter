@@ -1,7 +1,7 @@
 import { SectionStyled } from "./Section.styled";
-import Container from "../Container/Container";
+import Container from "../Container";
 
-import { ChildrenProps } from "../../../types/types";
+import { ChildrenProps } from "/@/types";
 
 const Section = ({ children }: ChildrenProps) => {
   return (

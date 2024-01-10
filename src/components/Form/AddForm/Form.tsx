@@ -2,21 +2,19 @@ import { nanoid } from "nanoid";
 import { useFormik } from "formik";
 import DatePicker from "react-datepicker";
 
-import { useDispatch } from "react-redux/es/exports";
-import { formatDate } from "/@/helpers/formateDate";
+import { formatDate } from "/@/helpers";
+import { useAppDispatch } from "/@/hooks";
 
-import Section from "/@/components/reusable/Section/Section";
-import Button from "/@/components/reusable/Button/Button";
-import { InputStyled } from "/@/components/reusable/Input/Input.styled";
+import { InputStyled, Section, Button } from "/@/components/reusable";
 
 import { FormStyled, Label } from "./Form.styled";
 
 import { addNote } from "/@/redux/money/reducer";
 
-import { TType } from "/@/types/types";
+import { TType } from "/@/types";
 
 const Form = ({ type }: TType) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const initialValues = {
     price: "",
