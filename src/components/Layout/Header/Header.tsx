@@ -1,12 +1,13 @@
-import { useAppSelector } from "../../../hooks/useReduxHooks";
+import { useAppSelector } from "/@/hooks/useReduxHooks";
 
 import { NavLinkStyled, Header } from "./Header.styled";
-import UserBar from "../../UserBar/UserBar";
-import AuthBar from "../../AuthBar/AuthBar";
-import { List } from "../../reusable/List/List";
+import UserBar from "/@/components/UserBar/UserBar";
 
-import { router } from "../../../routes";
-import { authSelector } from "../../../redux/auth/selectors";
+import AuthBar from "/@/components/AuthBar/AuthBar";
+import { List } from "/@/components/reusable/List/List";
+
+import { router } from "/@/routes";
+import { authSelector } from "/@/redux/auth/selectors";
 
 const HeaderLayout = () => {
   const { isLogin } = useAppSelector(authSelector);

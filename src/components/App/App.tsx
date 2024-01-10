@@ -3,12 +3,12 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import Layout from "../Layout/Layout";
 
-import Home from "../../pages/Home/Home";
-import Counter from "../../pages/Counter/Counter";
-import SignUp from "../../pages/SignUp/SignUp";
-import Login from "../../pages/Login/Login";
+import Home from "/@/pages/Home/Home";
+import Counter from "/@/pages/Counter/Counter";
+import SignUp from "/@/pages/SignUp/SignUp";
+import Login from "/@/pages/Login/Login";
 
-import { router } from "../../routes";
+import { router } from "/@/routes";
 
 function App() {
   return (

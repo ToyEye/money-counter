@@ -1,7 +1,7 @@
-import { router } from "../../routes";
+import { router } from "/@/routes";
 import { NavLinkStyled } from "../Layout/Header/Header.styled";
 
-import { List } from "../reusable/List/List";
+import { List } from "/@/components/reusable/List/List";
 
 const AuthBar = () => {
   return (

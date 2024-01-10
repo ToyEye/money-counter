@@ -1,8 +1,9 @@
-import { useAppDispatch, useAppSelector } from "../../hooks/useReduxHooks";
-import { logout } from "../../redux/auth/operation";
-import { Heading } from "../reusable/Heading/Heading.styled";
 import { UserBarWrapper } from "./UserBar.styled";
-import { authSelector } from "../../redux/auth/selectors";
+import { Heading } from "../reusable/Heading/Heading.styled";
+
+import { useAppDispatch, useAppSelector } from "/@/hooks/useReduxHooks";
+import { logout } from "/@/redux/auth/operation";
+import { authSelector } from "/@/redux/auth/selectors";
 
 const UserBar = () => {
   const dispatch = useAppDispatch();

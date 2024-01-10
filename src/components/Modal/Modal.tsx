@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 
 import { ModalWrapper } from "./Modal.styled";
-import { ChildrenProps } from "../../types/types";
+import { ChildrenProps } from "/@/types/types";
 
 const modalPortal = document.querySelector("#modal-root");
 

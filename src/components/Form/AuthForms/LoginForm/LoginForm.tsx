@@ -1,11 +1,10 @@
-import { useAppDispatch } from "../../../../hooks/useReduxHooks";
-
 import { useFormik } from "formik";
 
-import Section from "../../../reusable/Section/Section";
-import Container from "../../../reusable/Container/Container";
+import Section from "/@/components/reusable/Section/Section";
+import Container from "/@/components/reusable/Container/Container";
 
-import { loginUser } from "../../../../redux/auth/operation";
+import { loginUser } from "/@/redux/auth/operation";
+import { useAppDispatch } from "/@/hooks/useReduxHooks";
 
 const LoginForm = () => {
   const dispatch = useAppDispatch();

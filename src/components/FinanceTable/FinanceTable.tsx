@@ -1,9 +1,9 @@
-import FinanceRow from "../FinanceRow/FinanceRow";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
-import Section from "../reusable/Section/Section";
-import { Heading } from "../reusable/Heading/Heading.styled";
+import FinanceRow from "../FinanceRow/FinanceRow";
+import Section from "/@/components/reusable/Section/Section";
+import { Heading } from "/@/components/reusable/Heading/Heading.styled";
 
 import {
   Table,
@@ -13,10 +13,10 @@ import {
   TableBody,
 } from "./FinanceTable.style";
 
-import { sortForDate } from "../../helpers/sortForDate";
+import { sortForDate } from "/@/helpers/sortForDate";
 
-import { IValues, TType } from "../../types/types";
-import useReduxState from "../../hooks/useReduxState";
+import { IValues, TType } from "/@/types/types";
+import useReduxState from "/@/hooks/useReduxState";
 
 const FinanceTable = ({ type }: TType) => {
   const [count, setCount] = useState(0);

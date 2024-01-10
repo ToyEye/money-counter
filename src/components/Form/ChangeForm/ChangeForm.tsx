@@ -10,12 +10,12 @@ import {
   RadioBtnThumb,
 } from "./ChangeForm.styled";
 
-import Button from "../../reusable/Button/Button";
-import { InputStyled } from "../../reusable/Input/Input.styled";
+import { Button } from "/@/components/reusable";
+import { InputStyled } from "/@/components/reusable/Input/Input.styled";
 
-import { formatDate } from "../../../helpers/formateDate";
-import { changeExpense } from "../../../redux/money/reducer";
-import { IValues } from "../../../types/types";
+import { formatDate } from "/@/helpers/formateDate";
+import { changeExpense } from "/@/redux/money/reducer";
+import { IValues } from "/@/types/types";
 
 type Props = {
   operation: IValues;

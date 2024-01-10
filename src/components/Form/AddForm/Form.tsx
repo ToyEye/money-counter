@@ -3,16 +3,17 @@ import { useFormik } from "formik";
 import DatePicker from "react-datepicker";
 
 import { useDispatch } from "react-redux/es/exports";
-import { formatDate } from "../../../helpers/formateDate";
+import { formatDate } from "/@/helpers/formateDate";
 
-import Section from "../../reusable/Section/Section";
+import Section from "/@/components/reusable/Section/Section";
+import Button from "/@/components/reusable/Button/Button";
+import { InputStyled } from "/@/components/reusable/Input/Input.styled";
+
 import { FormStyled, Label } from "./Form.styled";
-import Button from "../../reusable/Button/Button";
-import { InputStyled } from "../../reusable/Input/Input.styled";
 
-import { addNote } from "../../../redux/money/reducer";
+import { addNote } from "/@/redux/money/reducer";
 
-import { TType } from "../../../types/types";
+import { TType } from "/@/types/types";
 
 const Form = ({ type }: TType) => {
   const dispatch = useDispatch();
