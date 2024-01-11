@@ -3,13 +3,14 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 import { FirebaseError } from "firebase/app";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { auth } from "../../firebase";
-import { TCredential } from "../../types/types";
+import { auth } from "/@/firebase";
+import { TCredential, User } from "/@/types";
 
 export const signUpUser = createAsyncThunk(
   "auth/signUp",
@@ -63,3 +64,23 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue("An error occurred during logout.");
   }
 });
+
+export const getCurrentUser = createAsyncThunk<User>(
+  "auth/current",
+  async (_, thunkAPI) => {
+    try {
+      return await new Promise((resolve, reject) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          unsubscribe(); // Отписываемся от слушателя после первого вызова
+          if (user) {
+            resolve(user);
+          } else {
+            reject("An error occurred during logout.");
+          }
+        });
+      });
+    } catch (error) {
+      return thunkAPI.rejectWithValue("An error occurred during logout.");
+    }
+  }
+);

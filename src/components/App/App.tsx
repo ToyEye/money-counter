@@ -4,7 +4,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import Layout from "../Layout";
 
 import { router } from "/@/routes";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
+
+import { getCurrentUser } from "/@/redux/auth/operation";
+import { useAppDispatch } from "/@/hooks";
 
 const HomePage = lazy(() =>
   import("/@/pages").then((module) => ({ default: module.HomePage }))
@@ -23,6 +26,12 @@ const LoginPage = lazy(() =>
 );
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path={router.HOME} element={<Layout />}>
