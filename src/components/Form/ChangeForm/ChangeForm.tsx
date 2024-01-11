@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
 import { MdClose } from "react-icons/md";
 
-import { FormWrapper, LabelStyled, RadioBtnThumb } from "./ChangeForm.styled";
+import { FormWrapper, RadioBtnThumb } from "./ChangeForm.styled";
 
-import { Button, Form, InputStyled } from "/@/components/reusable";
+import { Button, Form, InputStyled, Label } from "/@/components/reusable";
 
 import { formatDate } from "/@/helpers/";
 import { changeExpense } from "/@/redux/money/reducer";
@@ -68,8 +68,8 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
         <MdClose size={20} />
       </Button>
 
-      <Form onSubmit={onSubmit}>
-        <LabelStyled>
+      <Form onSubmit={onSubmit} className="changeForm">
+        <Label className="changeForm">
           Price
           <InputStyled
             type="text"
@@ -77,8 +77,8 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
             name="changedPrice"
             onChange={onValueChange}
           />
-        </LabelStyled>
-        <LabelStyled>
+        </Label>
+        <Label className="changeForm">
           Description
           <InputStyled
             className="changeForm"
@@ -87,8 +87,8 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
             name="changedDescription"
             onChange={onValueChange}
           />
-        </LabelStyled>
-        <LabelStyled>
+        </Label>
+        <Label className="changeForm">
           Date
           <DatePicker
             showIcon
@@ -98,7 +98,7 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
             selected={date}
             customInput={<InputStyled className="changeForm" />}
           />
-        </LabelStyled>
+        </Label>
         <RadioBtnThumb>
           <p>Type of operation</p>
           <div>

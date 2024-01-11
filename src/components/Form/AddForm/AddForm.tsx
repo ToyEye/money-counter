@@ -5,9 +5,13 @@ import DatePicker from "react-datepicker";
 import { formatDate } from "/@/helpers";
 import { useAppDispatch } from "/@/hooks";
 
-import { InputStyled, Section, Button, Form } from "/@/components/reusable";
-
-import { Label } from "./AddForm.styled";
+import {
+  InputStyled,
+  Section,
+  Button,
+  Form,
+  Label,
+} from "/@/components/reusable";
 
 import { addNote } from "/@/redux/money/reducer";
 
@@ -39,7 +43,7 @@ const AddForm = ({ type }: TType) => {
   return (
     <Section>
       <Form onSubmit={formik.handleSubmit} className="addForm">
-        <Label>
+        <Label className="addForm ">
           <span>Type price</span>
           <InputStyled
             className="addForm"
@@ -50,7 +54,7 @@ const AddForm = ({ type }: TType) => {
             value={formik.values.price}
           />
         </Label>
-        <Label>
+        <Label className="addForm ">
           <span>Type description</span>
           <InputStyled
             className="addForm"
@@ -61,7 +65,7 @@ const AddForm = ({ type }: TType) => {
             value={formik.values.description}
           />
         </Label>
-        <Label>
+        <Label className="addForm ">
           <span>Pick date</span>
           <DatePicker
             showIcon

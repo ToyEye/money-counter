@@ -9,16 +9,6 @@ export const FormWrapper = styled.div`
   border-radius: 14px;
 `;
 
-export const LabelStyled = styled.label`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-
-  .react-datepicker__tab-loop {
-    position: absolute;
-  }
-`;
-
 export const RadioBtnThumb = styled.div`
   display: flex;
   flex-direction: column;
