@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 
-import { Section, Container } from "/@/components/reusable";
+import { Section, Container, Form } from "/@/components/reusable";
 
 import { loginUser } from "/@/redux/auth/operation";
 import { useAppDispatch } from "/@/hooks/";
@@ -23,7 +23,7 @@ const LoginForm = () => {
   return (
     <Section>
       <Container>
-        <form onSubmit={formik.handleSubmit}>
+        <Form onSubmit={formik.handleSubmit}>
           <label>
             Email
             <input
@@ -43,7 +43,7 @@ const LoginForm = () => {
             />
           </label>
           <button type="submit">Sign up</button>
-        </form>
+        </Form>
       </Container>
     </Section>
   );

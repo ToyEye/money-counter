@@ -5,15 +5,15 @@ import DatePicker from "react-datepicker";
 import { formatDate } from "/@/helpers";
 import { useAppDispatch } from "/@/hooks";
 
-import { InputStyled, Section, Button } from "/@/components/reusable";
+import { InputStyled, Section, Button, Form } from "/@/components/reusable";
 
-import { FormStyled, Label } from "./Form.styled";
+import { Label } from "./AddForm.styled";
 
 import { addNote } from "/@/redux/money/reducer";
 
 import { TType } from "/@/types";
 
-const Form = ({ type }: TType) => {
+const AddForm = ({ type }: TType) => {
   const dispatch = useAppDispatch();
 
   const initialValues = {
@@ -38,7 +38,7 @@ const Form = ({ type }: TType) => {
 
   return (
     <Section>
-      <FormStyled onSubmit={formik.handleSubmit}>
+      <Form onSubmit={formik.handleSubmit} className="addForm">
         <Label>
           <span>Type price</span>
           <InputStyled
@@ -75,9 +75,9 @@ const Form = ({ type }: TType) => {
         <Button type="submit" goal={type} className="addMoney">
           Add
         </Button>
-      </FormStyled>
+      </Form>
     </Section>
   );
 };
 
-export default Form;
+export default AddForm;

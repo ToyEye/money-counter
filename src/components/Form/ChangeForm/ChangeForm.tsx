@@ -3,14 +3,9 @@ import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
 import { MdClose } from "react-icons/md";
 
-import {
-  Form,
-  FormWrapper,
-  LabelStyled,
-  RadioBtnThumb,
-} from "./ChangeForm.styled";
+import { FormWrapper, LabelStyled, RadioBtnThumb } from "./ChangeForm.styled";
 
-import { Button, InputStyled } from "/@/components/reusable";
+import { Button, Form, InputStyled } from "/@/components/reusable";
 
 import { formatDate } from "/@/helpers/";
 import { changeExpense } from "/@/redux/money/reducer";

@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import { useAppDispatch } from "/@/hooks";
 import { signUpUser } from "/@/redux/auth/operation";
 
-import { Section, Container } from "/@/components/reusable";
+import { Section, Container, Form } from "/@/components/reusable";
 
 const SignUpForm = () => {
   const initialValues = {
@@ -23,7 +23,7 @@ const SignUpForm = () => {
   return (
     <Section>
       <Container>
-        <form onSubmit={formik.handleSubmit}>
+        <Form onSubmit={formik.handleSubmit}>
           <label>
             Name
             <input
@@ -52,7 +52,7 @@ const SignUpForm = () => {
             />
           </label>
           <button type="submit">Sign up</button>
-        </form>
+        </Form>
       </Container>
     </Section>
   );

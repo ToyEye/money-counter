@@ -9,15 +9,6 @@ export const FormWrapper = styled.div`
   border-radius: 14px;
 `;
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-
-  gap: 20px;
-
-  padding: 40px 20px 20px;
-`;
-
 export const LabelStyled = styled.label`
   display: flex;
   flex-direction: column;
