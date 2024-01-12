@@ -6,6 +6,8 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
+import { getDatabase, ref, set, update } from "firebase/database";
+
 import { FirebaseError } from "firebase/app";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -22,8 +24,27 @@ export const signUpUser = createAsyncThunk(
         credential.password
       );
 
+      const writeUserData = async (
+        userId: string,
+        name: string | null,
+        email: string | null
+      ) => {
+        const db = getDatabase();
+        await set(ref(db, `users/${userId}`), {
+          username: name,
+          email: email,
+        });
+
+        await update(ref(db, `users/${userId}`), {
+          money: {
+            expenses: [],
+            income: [],
+          },
+        });
+      };
       await updateProfile(user, { displayName: credential.name });
 
+      await writeUserData(user.uid, user.displayName, user.email);
       return user;
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
