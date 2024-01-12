@@ -7,6 +7,7 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-around;
   gap: 20px;
+  border-bottom: 1px solid black;
 
   @media screen and (min-width: 768px) {
     height: auto;

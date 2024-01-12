@@ -14,4 +14,10 @@ export const Form = styled.form`
   &.changeForm {
     padding: 40px 20px 20px;
   }
+
+  &.authForm {
+    height: calc(60vh - 48px - 48px);
+    align-items: center;
+    justify-content: center;
+  }
 `;

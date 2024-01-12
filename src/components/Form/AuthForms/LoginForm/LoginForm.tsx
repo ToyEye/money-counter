@@ -1,6 +1,13 @@
 import { useFormik } from "formik";
 
-import { Section, Container, Form } from "/@/components/reusable";
+import {
+  Section,
+  Container,
+  Form,
+  Label,
+  InputStyled,
+  Button,
+} from "/@/components/reusable";
 
 import { loginUser } from "/@/redux/auth/operation";
 import { useAppDispatch } from "/@/hooks/";
@@ -23,26 +30,30 @@ const LoginForm = () => {
   return (
     <Section>
       <Container>
-        <Form onSubmit={formik.handleSubmit}>
-          <label>
+        <Form onSubmit={formik.handleSubmit} className="authForm">
+          <Label className="authForm">
             Email
-            <input
+            <InputStyled
               type="email"
               name="email"
+              className="authForm"
               onChange={formik.handleChange}
               value={formik.values.email}
             />
-          </label>
-          <label>
+          </Label>
+          <Label className="authForm">
             Password
-            <input
+            <InputStyled
               type="password"
               name="password"
+              className="authForm"
               onChange={formik.handleChange}
               value={formik.values.password}
             />
-          </label>
-          <button type="submit">Sign up</button>
+          </Label>
+          <Button className="authFormBtn" type="submit">
+            Sign up
+          </Button>
         </Form>
       </Container>
     </Section>

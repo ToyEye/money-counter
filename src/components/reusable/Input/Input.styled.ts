@@ -24,4 +24,18 @@ export const InputStyled = styled.input`
       padding: 5px 10px 5px 25px;
     }
   }
+
+  &.authForm {
+    padding: 6px 10px 5px 25px;
+    border: 2px solid #00000066;
+    border-radius: 4px;
+
+    &:is(:hover, :focus) {
+      border-color: #007bff;
+    }
+
+    /* &:focus-within {
+      border-color: #007bff;
+    } */
+  }
 `;

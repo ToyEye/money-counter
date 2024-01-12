@@ -83,4 +83,19 @@ export const ButtonStyled = styled.button<IButtonProps>`
       transform: scale(0.8);
     }
   }
+
+  &.authFormBtn {
+    padding: 5px 15px;
+    border: 2px solid #00000066;
+    border-radius: 4px;
+    outline: none;
+
+    transition: 350ms cubic-bezier(0.19, 1, 0.22, 1);
+
+    &:is(:hover, :focus) {
+      background-color: #007bff;
+      color: white;
+      border-color: transparent;
+    }
+  }
 `;
