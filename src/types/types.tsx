@@ -43,10 +43,16 @@ export type TAuth = {
   token: null | string | undefined;
   isLoading: boolean;
   error: string | null | undefined;
+  isRefreshing: boolean;
 };
 
 export type TCredential = {
   name?: string;
   email: string;
   password: string;
+};
+
+export type TAccessProps = {
+  component: ReactNode;
+  redirectTo: string;
 };

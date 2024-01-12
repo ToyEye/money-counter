@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 
 import Layout from "../Layout";
+import PublicRoute from "../PublicRoute";
+import PrivatRoute from "../PrivatRoute";
 
 import { router } from "/@/routes";
 import { lazy, useEffect } from "react";
@@ -36,9 +38,27 @@ function App() {
     <Routes>
       <Route path={router.HOME} element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path={router.COUNT} element={<CounterPage />} />
-        <Route path={router.SIGNUP} element={<SignUpPage />} />
-        <Route path={router.LOGIN} element={<LoginPage />} />
+        <Route
+          path={router.COUNT}
+          element={
+            <PrivatRoute
+              redirectTo={router.LOGIN}
+              component={<CounterPage />}
+            />
+          }
+        />
+        <Route
+          path={router.SIGNUP}
+          element={
+            <PublicRoute redirectTo={router.COUNT} component={<SignUpPage />} />
+          }
+        />
+        <Route
+          path={router.LOGIN}
+          element={
+            <PublicRoute redirectTo={router.COUNT} component={<LoginPage />} />
+          }
+        />
       </Route>
     </Routes>
   );

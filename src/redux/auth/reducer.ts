@@ -8,6 +8,7 @@ const initialState: TAuth = {
   token: null,
   isLoading: false,
   error: null,
+  isRefreshing: false,
 };
 
 const handlePending = (state: TAuth) => {
@@ -17,6 +18,7 @@ const handlePending = (state: TAuth) => {
 
 const handleRejected = (state: TAuth, action: PayloadAction<User>) => {
   state.isLoading = false;
+  state.isRefreshing = false;
   state.error = action.payload ? action.payload.toString() : null;
 };
 
@@ -53,6 +55,12 @@ const authSlice = createSlice({
         state.user.name = action.payload.displayName;
         state.token = action.payload.accessToken;
         state.isLogin = true;
+        state.isRefreshing = false;
+      })
+      .addCase(getCurrentUser.pending, (state) => {
+        state.isRefreshing = true;
+        state.isLoading = true;
+        state.error = null;
       })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(
