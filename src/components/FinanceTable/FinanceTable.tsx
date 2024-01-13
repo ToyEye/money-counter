@@ -71,7 +71,7 @@ const FinanceTable = ({ type }: TType) => {
         </TableBody>
       </Table>
       <Heading as="h1" className={type} count={count > 0 ? true : false}>
-        Total: <span>{count}</span>
+        Total: <span>{count.toString()}</span>
       </Heading>
     </Section>
   );

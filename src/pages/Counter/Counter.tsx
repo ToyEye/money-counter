@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import {
   TabListStyled,
   TabPanelStyled,
@@ -7,8 +9,21 @@ import {
   TabWrapper,
 } from "./Counter.styled";
 import MoneyCounter from "../../components/MoneyCounter/";
+import { useAppDispatch } from "/@/hooks/";
+import { getMoney } from "/@/redux/money/operations";
 
 const Counter = () => {
+  const [firstLoad, setFirstLoad] = useState(true);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (firstLoad) {
+      dispatch(getMoney());
+      setFirstLoad(false);
+    }
+  }, [dispatch, firstLoad]);
+
   return (
     <AppWrapper>
       <TabsStyled>

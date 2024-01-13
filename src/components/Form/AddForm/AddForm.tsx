@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import { useFormik } from "formik";
 import DatePicker from "react-datepicker";
-import { getDatabase, ref, push } from "firebase/database";
+import { ref, runTransaction } from "firebase/database";
 
 import { formatDate } from "/@/helpers";
 import { useAppDispatch } from "/@/hooks";
@@ -17,7 +17,7 @@ import {
 import { addNote } from "/@/redux/money/reducer";
 
 import { IValues, TType } from "/@/types";
-import { auth } from "/@/firebase";
+import { auth, database } from "/@/firebase";
 
 const AddForm = ({ type }: TType) => {
   const dispatch = useAppDispatch();
@@ -27,12 +27,18 @@ const AddForm = ({ type }: TType) => {
     description: "",
     date: new Date(),
   };
-  const db = getDatabase();
 
   function writeUserData(newNote: IValues, uid: string | undefined) {
-    const exampleArrayRef = ref(db, `/users/${uid}/money/${type}`);
+    const exampleArrayRef = ref(database, `/users/${uid}/money/${type}`);
+    runTransaction(exampleArrayRef, (currentData) => {
+      if (!currentData) {
+        currentData = [];
+      }
 
-    push(exampleArrayRef, newNote);
+      currentData.push(newNote);
+
+      return currentData;
+    });
   }
 
   const formik = useFormik({

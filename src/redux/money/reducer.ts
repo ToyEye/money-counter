@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { IValues, IMoney, TRedux } from "../../types/types";
+import { getMoney } from "./operations";
 
 type TDelProp = {
   type: string;
@@ -61,6 +62,13 @@ const moneySlice = createSlice({
         );
       }
     },
+  },
+  extraReducers(builder) {
+    builder.addCase(getMoney.fulfilled, (state, action) => {
+      console.log(action);
+      state.expenses = action.payload.expenses;
+      state.income = action.payload.income;
+    });
   },
 });
 
