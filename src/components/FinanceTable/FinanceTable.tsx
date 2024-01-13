@@ -70,7 +70,7 @@ const FinanceTable = ({ type }: TType) => {
           </AnimatePresence>
         </TableBody>
       </Table>
-      <Heading as="h1" className={type} count={count > 0 ? true : false}>
+      <Heading as="h1" className={type} count={count > 0}>
         Total: <span>{count.toString()}</span>
       </Heading>
     </Section>

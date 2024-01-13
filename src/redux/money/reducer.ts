@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IValues, IMoney, TRedux } from "../../types/types";
-import { getMoney } from "./operations";
+import { IValues, IMoney } from "../../types/types";
+import { getMoney, addNoteE, removeNote } from "./operations";
 
 type TDelProp = {
   type: string;
@@ -22,11 +22,6 @@ const moneySlice = createSlice({
   name: "money",
   initialState,
   reducers: {
-    addNote: (state, action: PayloadAction<TRedux>) => {
-      const { type, newNote } = action.payload;
-
-      state[type as keyof IMoney].push(newNote);
-    },
     deleteExpense: (state, action: PayloadAction<TDelProp>) => {
       const { type, id } = action.payload;
       state[type as keyof IMoney] = state[type as keyof IMoney].filter(
@@ -64,14 +59,23 @@ const moneySlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(getMoney.fulfilled, (state, action) => {
-      console.log(action);
-      state.expenses = action.payload.expenses;
-      state.income = action.payload.income;
-    });
+    builder
+      .addCase(getMoney.fulfilled, (state, action) => {
+        state.expenses = action.payload?.expenses ?? [];
+        state.income = action.payload?.income ?? [];
+      })
+      .addCase(addNoteE.fulfilled, (state, action) => {
+        const { type, newNote } = action.meta.arg;
+
+        state[type as keyof IMoney].push(newNote);
+      })
+      .addCase(removeNote.fulfilled, (state, action) => {
+        const { type, withOutDeleteId } = action.payload;
+        state[type as keyof IMoney] = withOutDeleteId;
+      });
   },
 });
 
 export default moneySlice.reducer;
 
-export const { addNote, deleteExpense, changeExpense } = moneySlice.actions;
+export const { deleteExpense, changeExpense } = moneySlice.actions;

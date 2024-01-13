@@ -9,7 +9,12 @@ type ButtonProps = {
   goal?: string;
 };
 
-const Button = ({ children, onClick, className = "", goal }: ButtonProps) => {
+const Button = ({
+  children,
+  onClick,
+  className = "",
+  goal = "",
+}: ButtonProps) => {
   return (
     <ButtonStyled onClick={onClick} className={className} goal={goal}>
       {children}

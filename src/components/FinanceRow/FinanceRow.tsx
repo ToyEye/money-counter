@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+
 import { AnimatePresence } from "framer-motion";
 import { MdOutlineChangeCircle, MdDeleteForever } from "react-icons/md";
 
@@ -9,8 +9,9 @@ import { ChangeForm } from "../Form";
 
 import { TableData, TableRow, BtnWrapper } from "./FinanceRow.styled";
 
-import { deleteExpense } from "/@/redux/money/reducer";
 import { IValues } from "/@/types";
+import { removeNote } from "/@/redux/money/operations";
+import { useAppDispatch } from "/@/hooks";
 
 type Props = {
   operation: IValues;
@@ -18,12 +19,16 @@ type Props = {
 };
 
 const FinanceRow = ({ operation, type }: Props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
+  };
+
+  const handleRemove = () => {
+    dispatch(removeNote({ type, id: operation.id }));
   };
 
   return (
@@ -43,13 +48,7 @@ const FinanceRow = ({ operation, type }: Props) => {
             <Button type="button" onClick={toggleModal} className="finance">
               <MdOutlineChangeCircle size={24} />
             </Button>
-            <Button
-              className="finance"
-              type="button"
-              onClick={() =>
-                dispatch(deleteExpense({ type, id: operation.id }))
-              }
-            >
+            <Button className="finance" type="button" onClick={handleRemove}>
               <MdDeleteForever size={24} />
             </Button>
           </BtnWrapper>
