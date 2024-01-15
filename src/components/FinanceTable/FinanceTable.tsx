@@ -66,11 +66,11 @@ const FinanceTable = ({ type }: TType) => {
                   type={type}
                 />
               );
-            })}{" "}
+            })}
           </AnimatePresence>
         </TableBody>
       </Table>
-      <Heading as="h1" className={type} count={count > 0}>
+      <Heading as="h1" className={type} counter={count} type={type}>
         Total: <span>{count.toString()}</span>
       </Heading>
     </Section>

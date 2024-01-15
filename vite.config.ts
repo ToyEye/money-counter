@@ -9,4 +9,7 @@ export default defineConfig({
       "/@/": `${process.cwd()}/src/`,
     },
   },
+  build: {
+    sourcemap: true,
+  },
 });
