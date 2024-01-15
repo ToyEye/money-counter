@@ -64,7 +64,12 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
 
   return (
     <FormWrapper>
-      <Button onClick={toggleModal} type="string" className="buttonClose">
+      <Button
+        onClick={toggleModal}
+        type="string"
+        className="buttonClose"
+        typeofbtn="roundBtn"
+      >
         <MdClose size={20} />
       </Button>
 
@@ -72,6 +77,7 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
         <Label className="changeForm">
           Price
           <InputStyled
+            className="changeForm"
             type="text"
             value={price}
             name="changedPrice"
@@ -126,7 +132,7 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
             </label>
           </div>
         </RadioBtnThumb>
-        <Button type="submit" className="changeForm">
+        <Button type="submit" typeofbtn="changeForm">
           change
         </Button>
       </Form>

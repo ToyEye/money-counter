@@ -76,7 +76,12 @@ const AddForm = ({ type }: TType) => {
             customInput={<InputStyled className="addForm" />}
           />
         </Label>
-        <Button type="submit" goal={type} className="addMoney">
+        <Button
+          type="submit"
+          goal={type}
+          className="addMoney"
+          typeofbtn="roundBtn"
+        >
           Add
         </Button>
       </Form>

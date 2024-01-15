@@ -5,8 +5,9 @@ type ButtonProps = {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
-  type?: string;
   goal?: string;
+  type: string;
+  typeofbtn?: string;
 };
 
 const Button = ({
@@ -14,9 +15,15 @@ const Button = ({
   onClick,
   className = "",
   goal = "",
+  typeofbtn = "",
 }: ButtonProps) => {
   return (
-    <ButtonStyled onClick={onClick} className={className} goal={goal}>
+    <ButtonStyled
+      onClick={onClick}
+      className={className}
+      goal={goal}
+      typeofbtn={typeofbtn}
+    >
       {children}
     </ButtonStyled>
   );

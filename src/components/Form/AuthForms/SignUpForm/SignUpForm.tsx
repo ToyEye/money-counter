@@ -61,7 +61,7 @@ const SignUpForm = () => {
               value={formik.values.password}
             />
           </Label>
-          <Button className="authFormBtn" type="submit">
+          <Button typeofbtn="authFormBtn" type="submit">
             Sign up
           </Button>
         </Form>

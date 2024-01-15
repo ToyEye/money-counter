@@ -45,10 +45,10 @@ const FinanceRow = ({ operation, type }: Props) => {
 
         {type !== "summary" && (
           <BtnWrapper>
-            <Button type="button" onClick={toggleModal} className="finance">
+            <Button type="button" onClick={toggleModal} typeofbtn="finance">
               <MdOutlineChangeCircle size={24} />
             </Button>
-            <Button className="finance" type="button" onClick={handleRemove}>
+            <Button type="button" onClick={handleRemove} typeofbtn="finance">
               <MdDeleteForever size={24} />
             </Button>
           </BtnWrapper>
