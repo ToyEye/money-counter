@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 
 import Layout from "../Layout";
@@ -59,6 +59,7 @@ function App() {
             <PublicRoute redirectTo={router.COUNT} component={<LoginPage />} />
           }
         />
+        <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
   );
