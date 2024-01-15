@@ -9,7 +9,7 @@ import {
 import { getDatabase, ref, set, update } from "firebase/database";
 
 import { FirebaseError } from "firebase/app";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, nanoid } from "@reduxjs/toolkit";
 
 import { auth } from "/@/firebase";
 import { TCredential, User } from "/@/types";
@@ -37,8 +37,22 @@ export const signUpUser = createAsyncThunk(
 
         await update(ref(db, `users/${userId}`), {
           money: {
-            expenses: [],
-            income: [],
+            expenses: [
+              {
+                description: "test",
+                id: nanoid(),
+                price: "0",
+                type: "expenses",
+              },
+            ],
+            income: [
+              {
+                description: "test",
+                id: nanoid(),
+                price: "0",
+                type: "expenses",
+              },
+            ],
           },
         });
       };
