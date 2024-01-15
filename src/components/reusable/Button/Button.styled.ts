@@ -86,6 +86,22 @@ const buttonStyles: Record<string, ButtonStyle> = {
       color: "white",
       "border-color": "transparent",
     },
+    hover: {
+      transform: "scale(1.1)",
+    },
+  },
+
+  logoutBtn: {
+    default: {
+      "background-color": "transparent",
+      padding: " 5px 10px",
+      border: "1px solid #084a31",
+      "border-radius": "5px",
+      transition: "350ms cubic-bezier(0.19, 1, 0.22, 1)",
+    },
+    hover: {
+      transform: "scale(1.1)",
+    },
   },
 };
 
