@@ -104,7 +104,7 @@ export const removeNote = createAsyncThunk(
       } else {
         console.error("Unexpected error:", error);
         return thunkAPI.rejectWithValue(
-          "Произошла ошибка во время удаления записи."
+          "An error occurred while deleting the entry.."
         );
       }
     }
@@ -142,7 +142,6 @@ export const changeNote = createAsyncThunk(
           });
 
           set(typeRef, changedMoneyList);
-          return changedMoneyList;
         } else if (changes.changedType !== type) {
           const newNote = { ...changes, type: changes.changedType };
           const typeKey = changes.changedType;
@@ -150,12 +149,12 @@ export const changeNote = createAsyncThunk(
           if (!snapshotChanged.exists()) {
             await update(ref(database, `users/${userId}`), {
               money: {
-                [typeKey?.toString()]: [newNote],
+                [typeKey as string]: [newNote],
               },
             });
           } else {
             const moneyDataChanged = snapshotChanged.val();
-            console.log(moneyDataChanged);
+
             const withOutItem = moneyData.filter(
               (money: IValues) => money.id !== changes.id
             );
@@ -177,7 +176,7 @@ export const changeNote = createAsyncThunk(
       } else {
         console.error("Unexpected error:", error);
         return thunkAPI.rejectWithValue(
-          "Произошла ошибка во время изменения записи."
+          "An error occurred while making changes."
         );
       }
     }
