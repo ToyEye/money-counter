@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import { useDispatch } from "react-redux";
+
 import DatePicker from "react-datepicker";
 import { MdClose } from "react-icons/md";
 
@@ -9,7 +9,9 @@ import { Button, Form, InputStyled, Label } from "/@/components/reusable";
 
 import { formatDate } from "/@/helpers/";
 import { changeExpense } from "/@/redux/money/reducer";
+import { changeNote } from "/@/redux/money/operations";
 import { IValues } from "/@/types/";
+import { useAppDispatch } from "/@/hooks";
 
 type Props = {
   operation: IValues;
@@ -18,7 +20,7 @@ type Props = {
 };
 
 const ChangeForm = ({ operation, toggleModal, type }: Props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [price, setPrice] = useState(operation.price);
   const [description, setDescription] = useState(operation.description);
@@ -58,6 +60,8 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
       type,
       changedType,
     };
+
+    dispatch(changeNote({ changes, type }));
 
     dispatch(changeExpense({ type, changes }));
   };

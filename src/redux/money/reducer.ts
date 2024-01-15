@@ -3,12 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IValues, IMoney } from "../../types/types";
 import { getMoney, addNoteE, removeNote } from "./operations";
 
-type TDelProp = {
-  type: string;
-  id: string;
-};
-
-type TChangeProp = {
+export type TChangeProp = {
   type: string;
   changes: IValues;
 };
@@ -22,13 +17,6 @@ const moneySlice = createSlice({
   name: "money",
   initialState,
   reducers: {
-    deleteExpense: (state, action: PayloadAction<TDelProp>) => {
-      const { type, id } = action.payload;
-      state[type as keyof IMoney] = state[type as keyof IMoney].filter(
-        (money) => money.id !== id
-      );
-    },
-
     changeExpense: (state, action: PayloadAction<TChangeProp>) => {
       const { type, changes } = action.payload;
 
@@ -78,4 +66,4 @@ const moneySlice = createSlice({
 
 export default moneySlice.reducer;
 
-export const { deleteExpense, changeExpense } = moneySlice.actions;
+export const { changeExpense } = moneySlice.actions;
