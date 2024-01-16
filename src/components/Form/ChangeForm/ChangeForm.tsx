@@ -8,7 +8,7 @@ import { FormWrapper, RadioBtnThumb } from "./ChangeForm.styled";
 import { Button, Form, InputStyled, Label } from "/@/components/reusable";
 
 import { formatDate } from "/@/helpers/";
-import { changeExpense } from "/@/redux/money/reducer";
+
 import { changeNote } from "/@/redux/money/operations";
 import { IValues } from "/@/types/";
 import { useAppDispatch } from "/@/hooks";
@@ -62,8 +62,6 @@ const ChangeForm = ({ operation, toggleModal, type }: Props) => {
     };
 
     dispatch(changeNote({ changes, type }));
-
-    dispatch(changeExpense({ type, changes }));
   };
 
   return (

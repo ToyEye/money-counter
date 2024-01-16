@@ -1,6 +1,6 @@
 import { FirebaseError } from "firebase/app";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ref, get, runTransaction, set, update } from "firebase/database";
+import { ref, get, remove, update, push } from "firebase/database";
 import { auth, database } from "/@/firebase";
 import { IValues } from "/@/types";
 import { TChangeProp } from "./reducer";
@@ -16,7 +16,6 @@ export const getMoney = createAsyncThunk(
 
       if (snapshot.exists()) {
         const moneyData = snapshot.val();
-
         return moneyData;
       } else {
         console.warn("User data not found");
@@ -45,20 +44,20 @@ export const addNoteE = createAsyncThunk(
   "money/addNote",
   async ({ type, newNote }: TAddNote, thunkAPI) => {
     const userId = auth.currentUser?.uid;
+    const typeArrayRef = ref(database, `/users/${userId}/money/${type}`);
 
     try {
-      const typeArrayRef = ref(database, `/users/${userId}/money/${type}`);
+      const newObjectRef = push(typeArrayRef);
+      const newObjectKey = newObjectRef.key;
 
-      const data = await runTransaction(typeArrayRef, (currentData) => {
-        if (!currentData) {
-          currentData = [];
-        }
+      const newAddedNote = {
+        ...newNote,
+        id: newObjectKey,
+      };
 
-        currentData.push(newNote);
+      await update(typeArrayRef, { [newObjectKey as string]: newAddedNote });
 
-        return currentData;
-      });
-      return data;
+      return newAddedNote;
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         console.log(error.message);
@@ -81,22 +80,11 @@ export const removeNote = createAsyncThunk(
   async ({ type, id }: TRemove, thunkAPI) => {
     const userId = auth.currentUser?.uid;
     try {
-      const noteRef = ref(database, `/users/${userId}/money/${type}`);
+      const noteRef = ref(database, `/users/${userId}/money/${type}/${id}`);
 
-      const snapshot = await get(noteRef);
+      remove(noteRef);
 
-      if (snapshot.exists()) {
-        const moneyData = snapshot.val();
-        const withOutDeleteId = moneyData.filter(
-          (money: IValues) => money.id !== id
-        );
-        console.log(withOutDeleteId);
-        await set(noteRef, withOutDeleteId);
-        return { type, withOutDeleteId };
-      } else {
-        console.warn("User data not found");
-        throw new Error("User data not found");
-      }
+      return { id, type };
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
         console.log("Firebase error:", error.message);
@@ -117,57 +105,33 @@ export const changeNote = createAsyncThunk(
     const userId = auth.currentUser?.uid;
 
     try {
-      const typeRef = ref(database, `/users/${userId}/money/${type}`);
-      const changedTypeRef = ref(
-        database,
-        `/users/${userId}/money/${changes.changedType}`
-      );
+      if (type === changes.changedType) {
+        const typeRef = ref(
+          database,
+          `/users/${userId}/money/${type}/${changes.id}`
+        );
+        update(typeRef, changes);
 
-      const snapshot = await get(typeRef);
-      const snapshotChanged = await get(changedTypeRef);
-
-      if (snapshot.exists()) {
-        const moneyData = snapshot.val();
-
-        if (changes.changedType === type) {
-          const changedMoneyList = moneyData.map((money: IValues) => {
-            return money.id === changes.id
-              ? {
-                  ...money,
-                  price: changes.price,
-                  description: changes.description,
-                  date: changes.date,
-                }
-              : money;
-          });
-
-          set(typeRef, changedMoneyList);
-        } else if (changes.changedType !== type) {
-          const newNote = { ...changes, type: changes.changedType };
-          const typeKey = changes.changedType;
-
-          if (!snapshotChanged.exists()) {
-            await update(ref(database, `users/${userId}`), {
-              money: {
-                [typeKey as string]: [newNote],
-              },
-            });
-          } else {
-            const moneyDataChanged = snapshotChanged.val();
-
-            const withOutItem = moneyData.filter(
-              (money: IValues) => money.id !== changes.id
-            );
-
-            const withchanges = [...moneyDataChanged, newNote];
-
-            set(typeRef, withOutItem);
-            set(changedTypeRef, withchanges);
-          }
-        }
+        return { changes, type };
       } else {
-        console.warn("User data not found");
-        throw new Error("User data not found");
+        const deletingTypeRef = ref(
+          database,
+          `/users/${userId}/money/${type}/${changes.id}`
+        );
+
+        const newTypeRef = ref(
+          database,
+          `/users/${userId}/money/${changes.changedType}/`
+        );
+
+        const newObj = {
+          [changes.id as string]: { ...changes, type: changes.changedType },
+        };
+
+        remove(deletingTypeRef);
+        update(newTypeRef, newObj);
+
+        return { changes, type };
       }
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {

@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { useFormik } from "formik";
 import DatePicker from "react-datepicker";
 
@@ -31,7 +30,7 @@ const AddForm = ({ type }: TType) => {
     onSubmit: (values) => {
       const newNote = {
         ...values,
-        id: nanoid(),
+
         date: formatDate(values.date),
         type,
       };

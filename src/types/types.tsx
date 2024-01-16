@@ -4,7 +4,7 @@ export interface IValues {
   price: string;
   description: string;
   date: string;
-  id: string;
+  id?: string;
   type: string | undefined;
   changedType?: string;
 }
@@ -12,6 +12,8 @@ export interface IValues {
 export interface IMoney {
   expenses: TValuesList;
   income: TValuesList;
+  error: string | null;
+  isLoading: boolean;
 }
 
 export type TValuesList = IValues[];
