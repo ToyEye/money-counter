@@ -6,10 +6,10 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { getDatabase, ref, set, update } from "firebase/database";
+import { getDatabase, ref, set } from "firebase/database";
 
 import { FirebaseError } from "firebase/app";
-import { createAsyncThunk, nanoid } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { auth } from "/@/firebase";
 import { TCredential, User } from "/@/types";
@@ -33,27 +33,6 @@ export const signUpUser = createAsyncThunk(
         await set(ref(db, `users/${userId}`), {
           username: name,
           email: email,
-        });
-
-        await update(ref(db, `users/${userId}`), {
-          money: {
-            expenses: [
-              {
-                description: "test",
-                id: nanoid(),
-                price: "0",
-                type: "expenses",
-              },
-            ],
-            income: [
-              {
-                description: "test",
-                id: nanoid(),
-                price: "0",
-                type: "expenses",
-              },
-            ],
-          },
         });
       };
       await updateProfile(user, { displayName: credential.name });
@@ -106,7 +85,7 @@ export const getCurrentUser = createAsyncThunk<User>(
     try {
       return await new Promise((resolve, reject) => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-          unsubscribe(); // Отписываемся от слушателя после первого вызова
+          unsubscribe();
           if (user) {
             resolve(user);
           } else {

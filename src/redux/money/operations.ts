@@ -5,6 +5,16 @@ import { auth, database } from "/@/firebase";
 import { IValues } from "/@/types";
 import { TChangeProp } from "./reducer";
 
+type TRemove = {
+  type: string;
+  id: string | undefined;
+};
+
+type TAddNote = {
+  type: string;
+  newNote: IValues;
+};
+
 export const getMoney = createAsyncThunk(
   "money/getMoney",
   async (_, thunkAPI) => {
@@ -35,11 +45,6 @@ export const getMoney = createAsyncThunk(
   }
 );
 
-type TAddNote = {
-  type: string;
-  newNote: IValues;
-};
-
 export const addNoteE = createAsyncThunk(
   "money/addNote",
   async ({ type, newNote }: TAddNote, thunkAPI) => {
@@ -69,11 +74,6 @@ export const addNoteE = createAsyncThunk(
     }
   }
 );
-
-type TRemove = {
-  type: string;
-  id: string;
-};
 
 export const removeNote = createAsyncThunk(
   "money/removeNote",
